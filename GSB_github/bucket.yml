@@ -1,0 +1,6 @@
+flows:
+  4379ccf1-4366-4fb3-9c13-e28612ae242d: {ver: 1, file: Read_CSV_Get_Date_From_Name_And_Put_Into_Postgres.snapshot,
+    comments: initial commit, author: anonymous, created: 1631958641602, flowName: Read
+      CSV Get Date From Name And Put Into Postgres, flowDesc: ''}
+layoutVer: 1
+bucketId: f26c78ed-5a2e-4104-bb53-aaecd13cf5b7
