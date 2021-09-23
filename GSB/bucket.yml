@@ -1,0 +1,6 @@
+flows:
+  123b1912-5c1b-428c-9fbf-efbe1da4daaa: {ver: 1, file: NIFI_Orchestration_Flow_V2.snapshot,
+    comments: 23/09/2021, author: anonymous, created: 1632421204225, flowName: NIFI
+      Orchestration Flow V2, flowDesc: ''}
+layoutVer: 1
+bucketId: feb8a097-1614-4f29-83d7-a47d5d93a4aa
