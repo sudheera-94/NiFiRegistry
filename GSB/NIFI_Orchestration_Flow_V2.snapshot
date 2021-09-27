@@ -14,6 +14,36 @@
           "bends" : [ ],
           "componentType" : "CONNECTION",
           "destination" : {
+            "comments" : "Get the file path and update it as an attribute",
+            "groupId" : "860623e7-2365-3eb3-88c8-18fcc4a3b08e",
+            "id" : "beb8e710-c4fe-3e2b-90ec-f2fb135dd0ab",
+            "name" : "Get File Path",
+            "type" : "PROCESSOR"
+          },
+          "flowFileExpiration" : "0 sec",
+          "groupIdentifier" : "860623e7-2365-3eb3-88c8-18fcc4a3b08e",
+          "identifier" : "056c52c5-b937-33b2-95eb-d0e23938de88",
+          "labelIndex" : 1,
+          "loadBalanceCompression" : "DO_NOT_COMPRESS",
+          "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
+          "name" : "",
+          "partitioningAttribute" : "",
+          "prioritizers" : [ ],
+          "selectedRelationships" : [ "success" ],
+          "source" : {
+            "comments" : "",
+            "groupId" : "860623e7-2365-3eb3-88c8-18fcc4a3b08e",
+            "id" : "fdba33be-9a15-31b5-8aa2-285f56601454",
+            "name" : "GetFile",
+            "type" : "PROCESSOR"
+          },
+          "zIndex" : 0
+        }, {
+          "backPressureDataSizeThreshold" : "1 GB",
+          "backPressureObjectThreshold" : 10000,
+          "bends" : [ ],
+          "componentType" : "CONNECTION",
+          "destination" : {
             "comments" : "",
             "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
             "id" : "5b15c07a-2053-36d2-b38a-be59eb830c66",
@@ -131,36 +161,6 @@
             "groupId" : "860623e7-2365-3eb3-88c8-18fcc4a3b08e",
             "id" : "e077090e-6347-3036-a774-21722b2de34f",
             "name" : "Fetch File From Staging Area",
-            "type" : "PROCESSOR"
-          },
-          "zIndex" : 0
-        }, {
-          "backPressureDataSizeThreshold" : "1 GB",
-          "backPressureObjectThreshold" : 10000,
-          "bends" : [ ],
-          "componentType" : "CONNECTION",
-          "destination" : {
-            "comments" : "Get the file path and update it as an attribute",
-            "groupId" : "860623e7-2365-3eb3-88c8-18fcc4a3b08e",
-            "id" : "beb8e710-c4fe-3e2b-90ec-f2fb135dd0ab",
-            "name" : "Get File Path",
-            "type" : "PROCESSOR"
-          },
-          "flowFileExpiration" : "0 sec",
-          "groupIdentifier" : "860623e7-2365-3eb3-88c8-18fcc4a3b08e",
-          "identifier" : "fc93b94d-d3fe-3f1a-b429-6cab3c90c6ed",
-          "labelIndex" : 1,
-          "loadBalanceCompression" : "DO_NOT_COMPRESS",
-          "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
-          "name" : "",
-          "partitioningAttribute" : "",
-          "prioritizers" : [ ],
-          "selectedRelationships" : [ "success" ],
-          "source" : {
-            "comments" : "",
-            "groupId" : "860623e7-2365-3eb3-88c8-18fcc4a3b08e",
-            "id" : "fdba33be-9a15-31b5-8aa2-285f56601454",
-            "name" : "GetFile",
             "type" : "PROCESSOR"
           },
           "zIndex" : 0
@@ -1744,7 +1744,7 @@
               "Compression codec" : "NONE",
               "Ignore Locality" : "false",
               "Kerberos Relogin Period" : "4 hours",
-              "Directory" : "/gsb/${dateTime}/${filepath:substringAfter('gsb/')}",
+              "Directory" : "/gsb/${filepath:substringAfter('gsb/')}/${dateTime}",
               "Conflict Resolution Strategy" : "replace"
             },
             "propertyDescriptors" : {
@@ -2138,7 +2138,7 @@
             },
             "flowFileExpiration" : "0 sec",
             "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-            "identifier" : "62e0e61f-9b32-3a42-9f4f-4790743bf211",
+            "identifier" : "2198d503-1ae8-3586-a15c-eee41668b026",
             "labelIndex" : 1,
             "loadBalanceCompression" : "DO_NOT_COMPRESS",
             "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
@@ -2149,98 +2149,8 @@
             "source" : {
               "comments" : "Write XML file to Hadoop Distributed File System (HDFS) with gzip compression",
               "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-              "id" : "865c54e7-3de4-37a6-a90d-c0427529251b",
+              "id" : "55face8f-8b35-3c3c-bd7e-1e0530aebf0a",
               "name" : "Put File to HDFS without Compression",
-              "type" : "PROCESSOR"
-            },
-            "zIndex" : 0
-          }, {
-            "backPressureDataSizeThreshold" : "1 GB",
-            "backPressureObjectThreshold" : 10000,
-            "bends" : [ ],
-            "componentType" : "CONNECTION",
-            "destination" : {
-              "comments" : "Routes the flow based on the extension of the file",
-              "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-              "id" : "b5512402-ff27-38aa-b7a1-41c4bab0b4fc",
-              "name" : "Route On File Extension",
-              "type" : "PROCESSOR"
-            },
-            "flowFileExpiration" : "0 sec",
-            "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-            "identifier" : "61193598-b06f-3994-975d-55ac2653baee",
-            "labelIndex" : 1,
-            "loadBalanceCompression" : "DO_NOT_COMPRESS",
-            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
-            "name" : "",
-            "partitioningAttribute" : "",
-            "prioritizers" : [ ],
-            "selectedRelationships" : [ "if_PM" ],
-            "source" : {
-              "comments" : "",
-              "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-              "id" : "6e9cfe8e-024c-3029-8e0d-5905a3ea12a6",
-              "name" : "RouteOnAttribute",
-              "type" : "PROCESSOR"
-            },
-            "zIndex" : 0
-          }, {
-            "backPressureDataSizeThreshold" : "1 GB",
-            "backPressureObjectThreshold" : 10000,
-            "bends" : [ ],
-            "componentType" : "CONNECTION",
-            "destination" : {
-              "comments" : "Write XML file to Hadoop Distributed File System (HDFS) with gzip compression",
-              "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-              "id" : "865c54e7-3de4-37a6-a90d-c0427529251b",
-              "name" : "Put File to HDFS without Compression",
-              "type" : "PROCESSOR"
-            },
-            "flowFileExpiration" : "0 sec",
-            "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-            "identifier" : "8377a0df-89f5-3628-8172-9a9ebb0080c9",
-            "labelIndex" : 1,
-            "loadBalanceCompression" : "DO_NOT_COMPRESS",
-            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
-            "name" : "",
-            "partitioningAttribute" : "",
-            "prioritizers" : [ ],
-            "selectedRelationships" : [ "success" ],
-            "source" : {
-              "comments" : "",
-              "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-              "id" : "37835f50-4308-366c-972a-c8a693ae4290",
-              "name" : "UpdateAttribute",
-              "type" : "PROCESSOR"
-            },
-            "zIndex" : 0
-          }, {
-            "backPressureDataSizeThreshold" : "1 GB",
-            "backPressureObjectThreshold" : 10000,
-            "bends" : [ ],
-            "componentType" : "CONNECTION",
-            "destination" : {
-              "comments" : "",
-              "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-              "id" : "bfd25f34-1cb6-38f8-be90-814064da19f3",
-              "name" : "EvaluateXPath",
-              "type" : "PROCESSOR"
-            },
-            "flowFileExpiration" : "0 sec",
-            "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-            "identifier" : "74d78330-a384-356e-ba2f-41807eb0cc15",
-            "labelIndex" : 1,
-            "loadBalanceCompression" : "DO_NOT_COMPRESS",
-            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
-            "name" : "",
-            "partitioningAttribute" : "",
-            "prioritizers" : [ ],
-            "selectedRelationships" : [ "if Xml" ],
-            "source" : {
-              "comments" : "Routes the flow based on the extension of the file",
-              "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-              "id" : "b5512402-ff27-38aa-b7a1-41c4bab0b4fc",
-              "name" : "Route On File Extension",
               "type" : "PROCESSOR"
             },
             "zIndex" : 0
@@ -2248,11 +2158,209 @@
             "backPressureDataSizeThreshold" : "1 GB",
             "backPressureObjectThreshold" : 10000,
             "bends" : [ {
-              "x" : 2343.017430896137,
-              "y" : -275.1526554488905
+              "x" : -256.44880980980406,
+              "y" : -1032.3488484268687
             }, {
-              "x" : 2343.017430896137,
-              "y" : -225.15265544889053
+              "x" : -256.44880980980406,
+              "y" : -1032.3488484268687
+            } ],
+            "componentType" : "CONNECTION",
+            "destination" : {
+              "comments" : "",
+              "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
+              "id" : "af6ea9d3-dbda-369e-97c2-f66ba6e19d56",
+              "name" : "If Begin Time Not Found",
+              "type" : "PROCESSOR"
+            },
+            "flowFileExpiration" : "0 sec",
+            "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
+            "identifier" : "1ea9dbb5-5f9a-3d43-8a53-feae466f9a94",
+            "labelIndex" : 1,
+            "loadBalanceCompression" : "DO_NOT_COMPRESS",
+            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
+            "name" : "",
+            "partitioningAttribute" : "",
+            "prioritizers" : [ ],
+            "selectedRelationships" : [ "failure" ],
+            "source" : {
+              "comments" : "",
+              "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
+              "id" : "633a4802-e561-3220-bffe-c1c4eb658600",
+              "name" : "EvaluateXPath",
+              "type" : "PROCESSOR"
+            },
+            "zIndex" : 0
+          }, {
+            "backPressureDataSizeThreshold" : "1 GB",
+            "backPressureObjectThreshold" : 10000,
+            "bends" : [ {
+              "x" : 467.11930542457094,
+              "y" : -267.9642353897593
+            }, {
+              "x" : 467.11930542457094,
+              "y" : -211.96423538975932
+            } ],
+            "componentType" : "CONNECTION",
+            "destination" : {
+              "comments" : "",
+              "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
+              "id" : "86b2a927-eb04-3059-8975-594b737cab2d",
+              "name" : "Send Put HDFS failed Email",
+              "type" : "PROCESSOR"
+            },
+            "flowFileExpiration" : "0 sec",
+            "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
+            "identifier" : "04467f91-23d0-329f-8a4c-7fa5d31245fd",
+            "labelIndex" : 1,
+            "loadBalanceCompression" : "DO_NOT_COMPRESS",
+            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
+            "name" : "",
+            "partitioningAttribute" : "",
+            "prioritizers" : [ ],
+            "selectedRelationships" : [ "nonzero status" ],
+            "source" : {
+              "comments" : "",
+              "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
+              "id" : "86b2a927-eb04-3059-8975-594b737cab2d",
+              "name" : "Send Put HDFS failed Email",
+              "type" : "PROCESSOR"
+            },
+            "zIndex" : 0
+          }, {
+            "backPressureDataSizeThreshold" : "1 GB",
+            "backPressureObjectThreshold" : 10000,
+            "bends" : [ ],
+            "componentType" : "CONNECTION",
+            "destination" : {
+              "comments" : "Unpack the zip file an send it back to Route of File Extension so the file inside the zip can be routed accordingly.",
+              "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
+              "id" : "d03cb5cd-c712-3ed7-a056-fec4680e057f",
+              "name" : "Unzip File",
+              "type" : "PROCESSOR"
+            },
+            "flowFileExpiration" : "0 sec",
+            "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
+            "identifier" : "d525ed86-e685-3813-aad7-07c66ef3cc35",
+            "labelIndex" : 1,
+            "loadBalanceCompression" : "DO_NOT_COMPRESS",
+            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
+            "name" : "",
+            "partitioningAttribute" : "",
+            "prioritizers" : [ ],
+            "selectedRelationships" : [ "if Zip" ],
+            "source" : {
+              "comments" : "Routes the flow based on the extension of the file",
+              "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
+              "id" : "fce067d3-3e99-3dcd-bdd8-8839bee22c29",
+              "name" : "Route On File Extension",
+              "type" : "PROCESSOR"
+            },
+            "zIndex" : 0
+          }, {
+            "backPressureDataSizeThreshold" : "1 GB",
+            "backPressureObjectThreshold" : 10000,
+            "bends" : [ ],
+            "componentType" : "CONNECTION",
+            "destination" : {
+              "comments" : "",
+              "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
+              "id" : "7efa5270-fa94-3c2a-a0ea-ee78dc8b70a1",
+              "name" : "UpdateAttribute",
+              "type" : "PROCESSOR"
+            },
+            "flowFileExpiration" : "0 sec",
+            "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
+            "identifier" : "dff4a0ff-6d41-3509-b2ac-af522a060ac9",
+            "labelIndex" : 1,
+            "loadBalanceCompression" : "DO_NOT_COMPRESS",
+            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
+            "name" : "",
+            "partitioningAttribute" : "",
+            "prioritizers" : [ ],
+            "selectedRelationships" : [ "success" ],
+            "source" : {
+              "comments" : "",
+              "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
+              "id" : "af6ea9d3-dbda-369e-97c2-f66ba6e19d56",
+              "name" : "If Begin Time Not Found",
+              "type" : "PROCESSOR"
+            },
+            "zIndex" : 0
+          }, {
+            "backPressureDataSizeThreshold" : "1 GB",
+            "backPressureObjectThreshold" : 10000,
+            "bends" : [ {
+              "x" : -1664.448809809804,
+              "y" : -768.3488484268687
+            }, {
+              "x" : -1664.448809809804,
+              "y" : -768.3488484268687
+            } ],
+            "componentType" : "CONNECTION",
+            "destination" : {
+              "comments" : "Routes the flow based on the extension of the file",
+              "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
+              "id" : "fce067d3-3e99-3dcd-bdd8-8839bee22c29",
+              "name" : "Route On File Extension",
+              "type" : "PROCESSOR"
+            },
+            "flowFileExpiration" : "0 sec",
+            "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
+            "identifier" : "50c9d91d-364f-33cb-9b32-b68ba2f6a435",
+            "labelIndex" : 1,
+            "loadBalanceCompression" : "DO_NOT_COMPRESS",
+            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
+            "name" : "",
+            "partitioningAttribute" : "",
+            "prioritizers" : [ ],
+            "selectedRelationships" : [ "success" ],
+            "source" : {
+              "comments" : "Unpack the zip file an send it back to Route of File Extension so the file inside the zip can be routed accordingly.",
+              "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
+              "id" : "d03cb5cd-c712-3ed7-a056-fec4680e057f",
+              "name" : "Unzip File",
+              "type" : "PROCESSOR"
+            },
+            "zIndex" : 0
+          }, {
+            "backPressureDataSizeThreshold" : "1 GB",
+            "backPressureObjectThreshold" : 10000,
+            "bends" : [ ],
+            "componentType" : "CONNECTION",
+            "destination" : {
+              "comments" : "",
+              "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
+              "id" : "86b2a927-eb04-3059-8975-594b737cab2d",
+              "name" : "Send Put HDFS failed Email",
+              "type" : "PROCESSOR"
+            },
+            "flowFileExpiration" : "0 sec",
+            "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
+            "identifier" : "0bea3341-03ce-3793-b3cd-2d08a1001c8e",
+            "labelIndex" : 1,
+            "loadBalanceCompression" : "DO_NOT_COMPRESS",
+            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
+            "name" : "",
+            "partitioningAttribute" : "",
+            "prioritizers" : [ ],
+            "selectedRelationships" : [ "failure" ],
+            "source" : {
+              "comments" : "Write XML file to Hadoop Distributed File System (HDFS) with gzip compression",
+              "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
+              "id" : "55face8f-8b35-3c3c-bd7e-1e0530aebf0a",
+              "name" : "Put File to HDFS without Compression",
+              "type" : "PROCESSOR"
+            },
+            "zIndex" : 0
+          }, {
+            "backPressureDataSizeThreshold" : "1 GB",
+            "backPressureObjectThreshold" : 10000,
+            "bends" : [ {
+              "x" : 1189.7649284547306,
+              "y" : -278.2076328658827
+            }, {
+              "x" : 1189.7649284547306,
+              "y" : -228.20763286588272
             } ],
             "componentType" : "CONNECTION",
             "destination" : {
@@ -2286,27 +2394,27 @@
             "bends" : [ ],
             "componentType" : "CONNECTION",
             "destination" : {
-              "comments" : "Decompresses the contents of the tar file",
+              "comments" : "Routes the flow based on the extension of the file",
               "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-              "id" : "a19b4243-a489-3e95-93c8-ca5e6fe39228",
-              "name" : "Decompress Gzip File",
+              "id" : "fce067d3-3e99-3dcd-bdd8-8839bee22c29",
+              "name" : "Route On File Extension",
               "type" : "PROCESSOR"
             },
             "flowFileExpiration" : "0 sec",
             "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-            "identifier" : "bdeb461d-fc92-30ed-a35e-3b5c6885fdca",
+            "identifier" : "b15ccd66-ecd1-353a-85af-1deaf5a748f8",
             "labelIndex" : 1,
             "loadBalanceCompression" : "DO_NOT_COMPRESS",
             "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
             "name" : "",
             "partitioningAttribute" : "",
             "prioritizers" : [ ],
-            "selectedRelationships" : [ "if Gzip" ],
+            "selectedRelationships" : [ "if_PM" ],
             "source" : {
-              "comments" : "Routes the flow based on the extension of the file",
+              "comments" : "",
               "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-              "id" : "b5512402-ff27-38aa-b7a1-41c4bab0b4fc",
-              "name" : "Route On File Extension",
+              "id" : "6e9cfe8e-024c-3029-8e0d-5905a3ea12a6",
+              "name" : "RouteOnAttribute",
               "type" : "PROCESSOR"
             },
             "zIndex" : 0
@@ -2316,10 +2424,10 @@
             "bends" : [ ],
             "componentType" : "CONNECTION",
             "destination" : {
-              "comments" : "Write XML file to Hadoop Distributed File System (HDFS) with gzip compression",
+              "comments" : "",
               "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-              "id" : "865c54e7-3de4-37a6-a90d-c0427529251b",
-              "name" : "Put File to HDFS without Compression",
+              "id" : "10a804dd-f632-3eaa-8bc4-3099afaabe77",
+              "name" : "LogAttribute",
               "type" : "PROCESSOR"
             },
             "flowFileExpiration" : "0 sec",
@@ -2373,36 +2481,30 @@
           }, {
             "backPressureDataSizeThreshold" : "1 GB",
             "backPressureObjectThreshold" : 10000,
-            "bends" : [ {
-              "x" : 1699.7151844110672,
-              "y" : -18.333969044984087
-            }, {
-              "x" : 1699.7151844110672,
-              "y" : 37.66603095501591
-            } ],
+            "bends" : [ ],
             "componentType" : "CONNECTION",
             "destination" : {
               "comments" : "",
               "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-              "id" : "1a272e3a-4480-3252-896b-ff010f61d85c",
-              "name" : "Send Put HDFS failed Email",
+              "id" : "633a4802-e561-3220-bffe-c1c4eb658600",
+              "name" : "EvaluateXPath",
               "type" : "PROCESSOR"
             },
             "flowFileExpiration" : "0 sec",
             "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-            "identifier" : "d64dfe62-d8b3-3836-84f2-559c0d3b4bc7",
+            "identifier" : "13e9190f-f9c0-3fed-873a-3ad4faaabab5",
             "labelIndex" : 1,
             "loadBalanceCompression" : "DO_NOT_COMPRESS",
             "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
             "name" : "",
             "partitioningAttribute" : "",
             "prioritizers" : [ ],
-            "selectedRelationships" : [ "nonzero status" ],
+            "selectedRelationships" : [ "if Xml" ],
             "source" : {
-              "comments" : "",
+              "comments" : "Routes the flow based on the extension of the file",
               "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-              "id" : "1a272e3a-4480-3252-896b-ff010f61d85c",
-              "name" : "Send Put HDFS failed Email",
+              "id" : "fce067d3-3e99-3dcd-bdd8-8839bee22c29",
+              "name" : "Route On File Extension",
               "type" : "PROCESSOR"
             },
             "zIndex" : 0
@@ -2444,13 +2546,13 @@
             "destination" : {
               "comments" : "",
               "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-              "id" : "37835f50-4308-366c-972a-c8a693ae4290",
+              "id" : "7efa5270-fa94-3c2a-a0ea-ee78dc8b70a1",
               "name" : "UpdateAttribute",
               "type" : "PROCESSOR"
             },
             "flowFileExpiration" : "0 sec",
             "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-            "identifier" : "ba6b3cc2-52c0-3cbc-8a70-47132501b298",
+            "identifier" : "82c04d59-4e18-3487-8040-5722be3adbbe",
             "labelIndex" : 1,
             "loadBalanceCompression" : "DO_NOT_COMPRESS",
             "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
@@ -2461,7 +2563,7 @@
             "source" : {
               "comments" : "",
               "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-              "id" : "bfd25f34-1cb6-38f8-be90-814064da19f3",
+              "id" : "633a4802-e561-3220-bffe-c1c4eb658600",
               "name" : "EvaluateXPath",
               "type" : "PROCESSOR"
             },
@@ -2470,125 +2572,23 @@
             "backPressureDataSizeThreshold" : "1 GB",
             "backPressureObjectThreshold" : 10000,
             "bends" : [ {
-              "x" : 573.2691394891921,
-              "y" : -374.0014037373669
+              "x" : -1592.448809809804,
+              "y" : -856.3488484268687
             }, {
-              "x" : 573.2691394891921,
-              "y" : -374.0014037373669
+              "x" : -1597.3407775832416,
+              "y" : -859.4568806534312
             } ],
             "componentType" : "CONNECTION",
             "destination" : {
               "comments" : "",
               "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-              "id" : "c84ee4fd-000e-3d41-9bbe-9dcaf6c77982",
-              "name" : "Could not find begin time ",
-              "type" : "PROCESSOR"
-            },
-            "flowFileExpiration" : "0 sec",
-            "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-            "identifier" : "f5aa43eb-ad27-358a-b460-ab38bb11a2e0",
-            "labelIndex" : 1,
-            "loadBalanceCompression" : "DO_NOT_COMPRESS",
-            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
-            "name" : "",
-            "partitioningAttribute" : "",
-            "prioritizers" : [ ],
-            "selectedRelationships" : [ "failure" ],
-            "source" : {
-              "comments" : "",
-              "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-              "id" : "bfd25f34-1cb6-38f8-be90-814064da19f3",
-              "name" : "EvaluateXPath",
-              "type" : "PROCESSOR"
-            },
-            "zIndex" : 0
-          }, {
-            "backPressureDataSizeThreshold" : "1 GB",
-            "backPressureObjectThreshold" : 10000,
-            "bends" : [ ],
-            "componentType" : "CONNECTION",
-            "destination" : {
-              "comments" : "Unpack the zip file an send it back to Route of File Extension so the file inside the zip can be routed accordingly.",
-              "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-              "id" : "54849db6-497d-308f-8f47-5be22e557638",
-              "name" : "Unzip File",
-              "type" : "PROCESSOR"
-            },
-            "flowFileExpiration" : "0 sec",
-            "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-            "identifier" : "79cf560d-cdbe-3f28-adc0-0fd782cb9c15",
-            "labelIndex" : 1,
-            "loadBalanceCompression" : "DO_NOT_COMPRESS",
-            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
-            "name" : "",
-            "partitioningAttribute" : "",
-            "prioritizers" : [ ],
-            "selectedRelationships" : [ "if Zip" ],
-            "source" : {
-              "comments" : "Routes the flow based on the extension of the file",
-              "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-              "id" : "b5512402-ff27-38aa-b7a1-41c4bab0b4fc",
-              "name" : "Route On File Extension",
-              "type" : "PROCESSOR"
-            },
-            "zIndex" : 0
-          }, {
-            "backPressureDataSizeThreshold" : "1 GB",
-            "backPressureObjectThreshold" : 10000,
-            "bends" : [ {
-              "x" : -296.0,
-              "y" : -312.0
-            }, {
-              "x" : -296.0,
-              "y" : -312.0
-            } ],
-            "componentType" : "CONNECTION",
-            "destination" : {
-              "comments" : "Routes the flow based on the extension of the file",
-              "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-              "id" : "b5512402-ff27-38aa-b7a1-41c4bab0b4fc",
-              "name" : "Route On File Extension",
-              "type" : "PROCESSOR"
-            },
-            "flowFileExpiration" : "0 sec",
-            "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-            "identifier" : "bdbf5159-b305-39bc-9394-21ebb949bfbb",
-            "labelIndex" : 1,
-            "loadBalanceCompression" : "DO_NOT_COMPRESS",
-            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
-            "name" : "",
-            "partitioningAttribute" : "",
-            "prioritizers" : [ ],
-            "selectedRelationships" : [ "success" ],
-            "source" : {
-              "comments" : "Unpack the zip file an send it back to Route of File Extension so the file inside the zip can be routed accordingly.",
-              "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-              "id" : "54849db6-497d-308f-8f47-5be22e557638",
-              "name" : "Unzip File",
-              "type" : "PROCESSOR"
-            },
-            "zIndex" : 0
-          }, {
-            "backPressureDataSizeThreshold" : "1 GB",
-            "backPressureObjectThreshold" : 10000,
-            "bends" : [ {
-              "x" : -360.0,
-              "y" : -608.0
-            }, {
-              "x" : -360.0,
-              "y" : -608.0
-            } ],
-            "componentType" : "CONNECTION",
-            "destination" : {
-              "comments" : "",
-              "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-              "id" : "b5bbd1fa-e26d-3eca-98d3-bad668696e0c",
+              "id" : "0c9d9e1e-1f7c-3b76-90f3-793a6510d7f5",
               "name" : "Unrecognized file format",
               "type" : "PROCESSOR"
             },
             "flowFileExpiration" : "0 sec",
             "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-            "identifier" : "0067f6f1-c361-30fa-8e41-cbff297d3115",
+            "identifier" : "6c360ee1-8764-36cb-a115-f612f26cd446",
             "labelIndex" : 1,
             "loadBalanceCompression" : "DO_NOT_COMPRESS",
             "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
@@ -2599,7 +2599,139 @@
             "source" : {
               "comments" : "Routes the flow based on the extension of the file",
               "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-              "id" : "b5512402-ff27-38aa-b7a1-41c4bab0b4fc",
+              "id" : "fce067d3-3e99-3dcd-bdd8-8839bee22c29",
+              "name" : "Route On File Extension",
+              "type" : "PROCESSOR"
+            },
+            "zIndex" : 0
+          }, {
+            "backPressureDataSizeThreshold" : "1 GB",
+            "backPressureObjectThreshold" : 10000,
+            "bends" : [ ],
+            "componentType" : "CONNECTION",
+            "destination" : {
+              "comments" : "Write XML file to Hadoop Distributed File System (HDFS) with gzip compression",
+              "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
+              "id" : "55face8f-8b35-3c3c-bd7e-1e0530aebf0a",
+              "name" : "Put File to HDFS without Compression",
+              "type" : "PROCESSOR"
+            },
+            "flowFileExpiration" : "0 sec",
+            "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
+            "identifier" : "649f464d-42e6-36ab-bc55-dbb3f507059c",
+            "labelIndex" : 1,
+            "loadBalanceCompression" : "DO_NOT_COMPRESS",
+            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
+            "name" : "",
+            "partitioningAttribute" : "",
+            "prioritizers" : [ ],
+            "selectedRelationships" : [ "success" ],
+            "source" : {
+              "comments" : "",
+              "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
+              "id" : "7efa5270-fa94-3c2a-a0ea-ee78dc8b70a1",
+              "name" : "UpdateAttribute",
+              "type" : "PROCESSOR"
+            },
+            "zIndex" : 0
+          }, {
+            "backPressureDataSizeThreshold" : "1 GB",
+            "backPressureObjectThreshold" : 10000,
+            "bends" : [ {
+              "x" : -1384.448809809804,
+              "y" : -1000.3488484268687
+            }, {
+              "x" : -1384.448809809804,
+              "y" : -1000.3488484268687
+            } ],
+            "componentType" : "CONNECTION",
+            "destination" : {
+              "comments" : "Routes the flow based on the extension of the file",
+              "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
+              "id" : "fce067d3-3e99-3dcd-bdd8-8839bee22c29",
+              "name" : "Route On File Extension",
+              "type" : "PROCESSOR"
+            },
+            "flowFileExpiration" : "0 sec",
+            "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
+            "identifier" : "167ed8f6-2c80-39a4-b251-11dd7aad69f0",
+            "labelIndex" : 1,
+            "loadBalanceCompression" : "DO_NOT_COMPRESS",
+            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
+            "name" : "",
+            "partitioningAttribute" : "",
+            "prioritizers" : [ ],
+            "selectedRelationships" : [ "success" ],
+            "source" : {
+              "comments" : "Decompresses the contents of the tar file",
+              "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
+              "id" : "fe7c0116-b230-3601-8f2a-0ce199577cc6",
+              "name" : "Decompress Gzip File",
+              "type" : "PROCESSOR"
+            },
+            "zIndex" : 0
+          }, {
+            "backPressureDataSizeThreshold" : "1 GB",
+            "backPressureObjectThreshold" : 10000,
+            "bends" : [ {
+              "x" : -208.44880980980406,
+              "y" : -904.3488484268687
+            }, {
+              "x" : -208.44880980980406,
+              "y" : -904.3488484268687
+            } ],
+            "componentType" : "CONNECTION",
+            "destination" : {
+              "comments" : "",
+              "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
+              "id" : "af6ea9d3-dbda-369e-97c2-f66ba6e19d56",
+              "name" : "If Begin Time Not Found",
+              "type" : "PROCESSOR"
+            },
+            "flowFileExpiration" : "0 sec",
+            "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
+            "identifier" : "d9d47291-dfd9-3f27-84e9-9686d4319084",
+            "labelIndex" : 1,
+            "loadBalanceCompression" : "DO_NOT_COMPRESS",
+            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
+            "name" : "",
+            "partitioningAttribute" : "",
+            "prioritizers" : [ ],
+            "selectedRelationships" : [ "unmatched" ],
+            "source" : {
+              "comments" : "",
+              "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
+              "id" : "633a4802-e561-3220-bffe-c1c4eb658600",
+              "name" : "EvaluateXPath",
+              "type" : "PROCESSOR"
+            },
+            "zIndex" : 0
+          }, {
+            "backPressureDataSizeThreshold" : "1 GB",
+            "backPressureObjectThreshold" : 10000,
+            "bends" : [ ],
+            "componentType" : "CONNECTION",
+            "destination" : {
+              "comments" : "Decompresses the contents of the tar file",
+              "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
+              "id" : "fe7c0116-b230-3601-8f2a-0ce199577cc6",
+              "name" : "Decompress Gzip File",
+              "type" : "PROCESSOR"
+            },
+            "flowFileExpiration" : "0 sec",
+            "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
+            "identifier" : "faa2c751-eae1-37d3-bfa1-4fa359cfd3be",
+            "labelIndex" : 1,
+            "loadBalanceCompression" : "DO_NOT_COMPRESS",
+            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
+            "name" : "",
+            "partitioningAttribute" : "",
+            "prioritizers" : [ ],
+            "selectedRelationships" : [ "if Gzip" ],
+            "source" : {
+              "comments" : "Routes the flow based on the extension of the file",
+              "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
+              "id" : "fce067d3-3e99-3dcd-bdd8-8839bee22c29",
               "name" : "Route On File Extension",
               "type" : "PROCESSOR"
             },
@@ -2634,108 +2766,6 @@
               "type" : "PROCESSOR"
             },
             "zIndex" : 0
-          }, {
-            "backPressureDataSizeThreshold" : "1 GB",
-            "backPressureObjectThreshold" : 10000,
-            "bends" : [ {
-              "x" : -120.0,
-              "y" : -736.0
-            }, {
-              "x" : -72.0,
-              "y" : -736.0
-            } ],
-            "componentType" : "CONNECTION",
-            "destination" : {
-              "comments" : "Routes the flow based on the extension of the file",
-              "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-              "id" : "b5512402-ff27-38aa-b7a1-41c4bab0b4fc",
-              "name" : "Route On File Extension",
-              "type" : "PROCESSOR"
-            },
-            "flowFileExpiration" : "0 sec",
-            "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-            "identifier" : "5ee4466d-c617-3995-8559-95baced11179",
-            "labelIndex" : 0,
-            "loadBalanceCompression" : "DO_NOT_COMPRESS",
-            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
-            "name" : "",
-            "partitioningAttribute" : "",
-            "prioritizers" : [ ],
-            "selectedRelationships" : [ "success" ],
-            "source" : {
-              "comments" : "Decompresses the contents of the tar file",
-              "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-              "id" : "a19b4243-a489-3e95-93c8-ca5e6fe39228",
-              "name" : "Decompress Gzip File",
-              "type" : "PROCESSOR"
-            },
-            "zIndex" : 0
-          }, {
-            "backPressureDataSizeThreshold" : "1 GB",
-            "backPressureObjectThreshold" : 10000,
-            "bends" : [ ],
-            "componentType" : "CONNECTION",
-            "destination" : {
-              "comments" : "",
-              "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-              "id" : "1a272e3a-4480-3252-896b-ff010f61d85c",
-              "name" : "Send Put HDFS failed Email",
-              "type" : "PROCESSOR"
-            },
-            "flowFileExpiration" : "0 sec",
-            "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-            "identifier" : "7a6a53a2-15ee-31ce-a5ec-aa48ba39f163",
-            "labelIndex" : 1,
-            "loadBalanceCompression" : "DO_NOT_COMPRESS",
-            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
-            "name" : "",
-            "partitioningAttribute" : "",
-            "prioritizers" : [ ],
-            "selectedRelationships" : [ "failure" ],
-            "source" : {
-              "comments" : "Write XML file to Hadoop Distributed File System (HDFS) with gzip compression",
-              "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-              "id" : "865c54e7-3de4-37a6-a90d-c0427529251b",
-              "name" : "Put File to HDFS without Compression",
-              "type" : "PROCESSOR"
-            },
-            "zIndex" : 0
-          }, {
-            "backPressureDataSizeThreshold" : "1 GB",
-            "backPressureObjectThreshold" : 10000,
-            "bends" : [ {
-              "x" : 845.2691394891921,
-              "y" : -374.0014037373669
-            }, {
-              "x" : 845.2691394891921,
-              "y" : -374.0014037373669
-            } ],
-            "componentType" : "CONNECTION",
-            "destination" : {
-              "comments" : "",
-              "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-              "id" : "c84ee4fd-000e-3d41-9bbe-9dcaf6c77982",
-              "name" : "Could not find begin time ",
-              "type" : "PROCESSOR"
-            },
-            "flowFileExpiration" : "0 sec",
-            "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-            "identifier" : "ad530411-7c2c-38e8-8a77-3b8ab6dfca4b",
-            "labelIndex" : 1,
-            "loadBalanceCompression" : "DO_NOT_COMPRESS",
-            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
-            "name" : "",
-            "partitioningAttribute" : "",
-            "prioritizers" : [ ],
-            "selectedRelationships" : [ "unmatched" ],
-            "source" : {
-              "comments" : "",
-              "groupId" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-              "id" : "bfd25f34-1cb6-38f8-be90-814064da19f3",
-              "name" : "EvaluateXPath",
-              "type" : "PROCESSOR"
-            },
-            "zIndex" : 0
           } ],
           "controllerServices" : [ ],
           "defaultBackPressureDataSizeThreshold" : "1 GB",
@@ -2755,8 +2785,8 @@
             "identifier" : "5b15c07a-2053-36d2-b38a-be59eb830c66",
             "name" : "Input Flowfiles",
             "position" : {
-              "x" : -280.0,
-              "y" : 160.0
+              "x" : -1568.0,
+              "y" : -200.0
             },
             "type" : "INPUT_PORT"
           } ],
@@ -2772,6 +2802,150 @@
             "autoTerminatedRelationships" : [ ],
             "bulletinLevel" : "WARN",
             "bundle" : {
+              "artifact" : "nifi-standard-nar",
+              "group" : "org.apache.nifi",
+              "version" : "1.14.0"
+            },
+            "comments" : "Routes the flow based on the extension of the file",
+            "componentType" : "PROCESSOR",
+            "concurrentlySchedulableTaskCount" : 1,
+            "executionNode" : "ALL",
+            "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
+            "identifier" : "fce067d3-3e99-3dcd-bdd8-8839bee22c29",
+            "name" : "Route On File Extension",
+            "penaltyDuration" : "30 sec",
+            "position" : {
+              "x" : -1464.0,
+              "y" : -824.0
+            },
+            "properties" : {
+              "Routing Strategy" : "Route to Property name",
+              "if Zip" : "${filename:endsWith('zip')}",
+              "if Gzip" : "${filename:endsWith('gz')}",
+              "if Xml" : "${filename:endsWith('xml')}"
+            },
+            "propertyDescriptors" : {
+              "Routing Strategy" : {
+                "displayName" : "Routing Strategy",
+                "identifiesControllerService" : false,
+                "name" : "Routing Strategy",
+                "sensitive" : false
+              },
+              "if Zip" : {
+                "displayName" : "if Zip",
+                "identifiesControllerService" : false,
+                "name" : "if Zip",
+                "sensitive" : false
+              },
+              "if Gzip" : {
+                "displayName" : "if Gzip",
+                "identifiesControllerService" : false,
+                "name" : "if Gzip",
+                "sensitive" : false
+              },
+              "if Xml" : {
+                "displayName" : "if Xml",
+                "identifiesControllerService" : false,
+                "name" : "if Xml",
+                "sensitive" : false
+              }
+            },
+            "runDurationMillis" : 0,
+            "scheduledState" : "ENABLED",
+            "schedulingPeriod" : "0 sec",
+            "schedulingStrategy" : "TIMER_DRIVEN",
+            "style" : {
+              "background-color" : "#b8f6ff"
+            },
+            "type" : "org.apache.nifi.processors.standard.RouteOnAttribute",
+            "yieldDuration" : "1 sec"
+          }, {
+            "autoTerminatedRelationships" : [ ],
+            "bulletinLevel" : "WARN",
+            "bundle" : {
+              "artifact" : "nifi-standard-nar",
+              "group" : "org.apache.nifi",
+              "version" : "1.14.0"
+            },
+            "comments" : "",
+            "componentType" : "PROCESSOR",
+            "concurrentlySchedulableTaskCount" : 1,
+            "executionNode" : "ALL",
+            "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
+            "identifier" : "0c9d9e1e-1f7c-3b76-90f3-793a6510d7f5",
+            "name" : "Unrecognized file format",
+            "penaltyDuration" : "30 sec",
+            "position" : {
+              "x" : -1992.0,
+              "y" : -1016.0
+            },
+            "properties" : {
+              "character-set" : "UTF-8",
+              "Log Level" : "info",
+              "attributes-to-log-regex" : ".*",
+              "Log Payload" : "false"
+            },
+            "propertyDescriptors" : {
+              "Log prefix" : {
+                "displayName" : "Log prefix",
+                "identifiesControllerService" : false,
+                "name" : "Log prefix",
+                "sensitive" : false
+              },
+              "character-set" : {
+                "displayName" : "Character Set",
+                "identifiesControllerService" : false,
+                "name" : "character-set",
+                "sensitive" : false
+              },
+              "Log Level" : {
+                "displayName" : "Log Level",
+                "identifiesControllerService" : false,
+                "name" : "Log Level",
+                "sensitive" : false
+              },
+              "attributes-to-ignore-regex" : {
+                "displayName" : "Attributes to Ignore by Regular Expression",
+                "identifiesControllerService" : false,
+                "name" : "attributes-to-ignore-regex",
+                "sensitive" : false
+              },
+              "Attributes to Ignore" : {
+                "displayName" : "Attributes to Ignore",
+                "identifiesControllerService" : false,
+                "name" : "Attributes to Ignore",
+                "sensitive" : false
+              },
+              "Attributes to Log" : {
+                "displayName" : "Attributes to Log",
+                "identifiesControllerService" : false,
+                "name" : "Attributes to Log",
+                "sensitive" : false
+              },
+              "attributes-to-log-regex" : {
+                "displayName" : "Attributes to Log by Regular Expression",
+                "identifiesControllerService" : false,
+                "name" : "attributes-to-log-regex",
+                "sensitive" : false
+              },
+              "Log Payload" : {
+                "displayName" : "Log Payload",
+                "identifiesControllerService" : false,
+                "name" : "Log Payload",
+                "sensitive" : false
+              }
+            },
+            "runDurationMillis" : 0,
+            "scheduledState" : "ENABLED",
+            "schedulingPeriod" : "0 sec",
+            "schedulingStrategy" : "TIMER_DRIVEN",
+            "style" : { },
+            "type" : "org.apache.nifi.processors.standard.LogAttribute",
+            "yieldDuration" : "1 sec"
+          }, {
+            "autoTerminatedRelationships" : [ ],
+            "bulletinLevel" : "WARN",
+            "bundle" : {
               "artifact" : "nifi-update-attribute-nar",
               "group" : "org.apache.nifi",
               "version" : "1.14.0"
@@ -2781,12 +2955,212 @@
             "concurrentlySchedulableTaskCount" : 1,
             "executionNode" : "ALL",
             "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-            "identifier" : "37835f50-4308-366c-972a-c8a693ae4290",
+            "identifier" : "af6ea9d3-dbda-369e-97c2-f66ba6e19d56",
+            "name" : "If Begin Time Not Found",
+            "penaltyDuration" : "30 sec",
+            "position" : {
+              "x" : -16.0,
+              "y" : -1072.0
+            },
+            "properties" : {
+              "dateTime" : "0000-00-00T00:00:00+00:00",
+              "Store State" : "Do not store state",
+              "canonical-value-lookup-cache-size" : "100"
+            },
+            "propertyDescriptors" : {
+              "dateTime" : {
+                "displayName" : "dateTime",
+                "identifiesControllerService" : false,
+                "name" : "dateTime",
+                "sensitive" : false
+              },
+              "Delete Attributes Expression" : {
+                "displayName" : "Delete Attributes Expression",
+                "identifiesControllerService" : false,
+                "name" : "Delete Attributes Expression",
+                "sensitive" : false
+              },
+              "Store State" : {
+                "displayName" : "Store State",
+                "identifiesControllerService" : false,
+                "name" : "Store State",
+                "sensitive" : false
+              },
+              "canonical-value-lookup-cache-size" : {
+                "displayName" : "Cache Value Lookup Cache Size",
+                "identifiesControllerService" : false,
+                "name" : "canonical-value-lookup-cache-size",
+                "sensitive" : false
+              },
+              "Stateful Variables Initial Value" : {
+                "displayName" : "Stateful Variables Initial Value",
+                "identifiesControllerService" : false,
+                "name" : "Stateful Variables Initial Value",
+                "sensitive" : false
+              }
+            },
+            "runDurationMillis" : 0,
+            "scheduledState" : "ENABLED",
+            "schedulingPeriod" : "0 sec",
+            "schedulingStrategy" : "TIMER_DRIVEN",
+            "style" : { },
+            "type" : "org.apache.nifi.processors.attributes.UpdateAttribute",
+            "yieldDuration" : "1 sec"
+          }, {
+            "autoTerminatedRelationships" : [ "original", "failure" ],
+            "bulletinLevel" : "WARN",
+            "bundle" : {
+              "artifact" : "nifi-standard-nar",
+              "group" : "org.apache.nifi",
+              "version" : "1.14.0"
+            },
+            "comments" : "Unpack the zip file an send it back to Route of File Extension so the file inside the zip can be routed accordingly.",
+            "componentType" : "PROCESSOR",
+            "concurrentlySchedulableTaskCount" : 1,
+            "executionNode" : "ALL",
+            "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
+            "identifier" : "d03cb5cd-c712-3ed7-a056-fec4680e057f",
+            "name" : "Unzip File",
+            "penaltyDuration" : "30 sec",
+            "position" : {
+              "x" : -2008.0,
+              "y" : -672.0
+            },
+            "properties" : {
+              "Packaging Format" : "zip",
+              "File Filter" : ".*"
+            },
+            "propertyDescriptors" : {
+              "Packaging Format" : {
+                "displayName" : "Packaging Format",
+                "identifiesControllerService" : false,
+                "name" : "Packaging Format",
+                "sensitive" : false
+              },
+              "File Filter" : {
+                "displayName" : "File Filter",
+                "identifiesControllerService" : false,
+                "name" : "File Filter",
+                "sensitive" : false
+              },
+              "Password" : {
+                "displayName" : "Password",
+                "identifiesControllerService" : false,
+                "name" : "Password",
+                "sensitive" : true
+              }
+            },
+            "runDurationMillis" : 0,
+            "scheduledState" : "ENABLED",
+            "schedulingPeriod" : "2 sec",
+            "schedulingStrategy" : "TIMER_DRIVEN",
+            "style" : {
+              "background-color" : "#b8b8b8"
+            },
+            "type" : "org.apache.nifi.processors.standard.UnpackContent",
+            "yieldDuration" : "1 sec"
+          }, {
+            "autoTerminatedRelationships" : [ ],
+            "bulletinLevel" : "WARN",
+            "bundle" : {
+              "artifact" : "nifi-standard-nar",
+              "group" : "org.apache.nifi",
+              "version" : "1.14.0"
+            },
+            "comments" : "",
+            "componentType" : "PROCESSOR",
+            "concurrentlySchedulableTaskCount" : 1,
+            "executionNode" : "ALL",
+            "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
+            "identifier" : "10a804dd-f632-3eaa-8bc4-3099afaabe77",
+            "name" : "LogAttribute",
+            "penaltyDuration" : "30 sec",
+            "position" : {
+              "x" : -152.0,
+              "y" : -72.0
+            },
+            "properties" : {
+              "character-set" : "UTF-8",
+              "Log Level" : "info",
+              "attributes-to-log-regex" : ".*",
+              "Log Payload" : "false"
+            },
+            "propertyDescriptors" : {
+              "Log prefix" : {
+                "displayName" : "Log prefix",
+                "identifiesControllerService" : false,
+                "name" : "Log prefix",
+                "sensitive" : false
+              },
+              "character-set" : {
+                "displayName" : "Character Set",
+                "identifiesControllerService" : false,
+                "name" : "character-set",
+                "sensitive" : false
+              },
+              "Log Level" : {
+                "displayName" : "Log Level",
+                "identifiesControllerService" : false,
+                "name" : "Log Level",
+                "sensitive" : false
+              },
+              "attributes-to-ignore-regex" : {
+                "displayName" : "Attributes to Ignore by Regular Expression",
+                "identifiesControllerService" : false,
+                "name" : "attributes-to-ignore-regex",
+                "sensitive" : false
+              },
+              "Attributes to Ignore" : {
+                "displayName" : "Attributes to Ignore",
+                "identifiesControllerService" : false,
+                "name" : "Attributes to Ignore",
+                "sensitive" : false
+              },
+              "Attributes to Log" : {
+                "displayName" : "Attributes to Log",
+                "identifiesControllerService" : false,
+                "name" : "Attributes to Log",
+                "sensitive" : false
+              },
+              "attributes-to-log-regex" : {
+                "displayName" : "Attributes to Log by Regular Expression",
+                "identifiesControllerService" : false,
+                "name" : "attributes-to-log-regex",
+                "sensitive" : false
+              },
+              "Log Payload" : {
+                "displayName" : "Log Payload",
+                "identifiesControllerService" : false,
+                "name" : "Log Payload",
+                "sensitive" : false
+              }
+            },
+            "runDurationMillis" : 0,
+            "scheduledState" : "ENABLED",
+            "schedulingPeriod" : "0 sec",
+            "schedulingStrategy" : "TIMER_DRIVEN",
+            "style" : { },
+            "type" : "org.apache.nifi.processors.standard.LogAttribute",
+            "yieldDuration" : "1 sec"
+          }, {
+            "autoTerminatedRelationships" : [ ],
+            "bulletinLevel" : "WARN",
+            "bundle" : {
+              "artifact" : "nifi-update-attribute-nar",
+              "group" : "org.apache.nifi",
+              "version" : "1.14.0"
+            },
+            "comments" : "",
+            "componentType" : "PROCESSOR",
+            "concurrentlySchedulableTaskCount" : 1,
+            "executionNode" : "ALL",
+            "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
+            "identifier" : "7efa5270-fa94-3c2a-a0ea-ee78dc8b70a1",
             "name" : "UpdateAttribute",
             "penaltyDuration" : "30 sec",
             "position" : {
-              "x" : 1216.0,
-              "y" : -560.0
+              "x" : -16.0,
+              "y" : -816.0
             },
             "properties" : {
               "dateTime" : "${dateTime:replace(':', '_')}",
@@ -2845,18 +3219,247 @@
             "concurrentlySchedulableTaskCount" : 1,
             "executionNode" : "ALL",
             "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-            "identifier" : "b5bbd1fa-e26d-3eca-98d3-bad668696e0c",
-            "name" : "Unrecognized file format",
+            "identifier" : "633a4802-e561-3220-bffe-c1c4eb658600",
+            "name" : "EvaluateXPath",
             "penaltyDuration" : "30 sec",
             "position" : {
-              "x" : -696.0,
-              "y" : -776.0
+              "x" : -752.0,
+              "y" : -816.0
+            },
+            "properties" : {
+              "dateTime" : "/*:measCollecFile/*:fileHeader/*:measCollec/@beginTime",
+              "Destination" : "flowfile-attribute",
+              "Return Type" : "auto-detect",
+              "Validate DTD" : "false"
+            },
+            "propertyDescriptors" : {
+              "dateTime" : {
+                "displayName" : "dateTime",
+                "identifiesControllerService" : false,
+                "name" : "dateTime",
+                "sensitive" : false
+              },
+              "Destination" : {
+                "displayName" : "Destination",
+                "identifiesControllerService" : false,
+                "name" : "Destination",
+                "sensitive" : false
+              },
+              "Return Type" : {
+                "displayName" : "Return Type",
+                "identifiesControllerService" : false,
+                "name" : "Return Type",
+                "sensitive" : false
+              },
+              "Validate DTD" : {
+                "displayName" : "Validate DTD",
+                "identifiesControllerService" : false,
+                "name" : "Validate DTD",
+                "sensitive" : false
+              }
+            },
+            "runDurationMillis" : 0,
+            "scheduledState" : "ENABLED",
+            "schedulingPeriod" : "0 sec",
+            "schedulingStrategy" : "TIMER_DRIVEN",
+            "style" : { },
+            "type" : "org.apache.nifi.processors.standard.EvaluateXPath",
+            "yieldDuration" : "1 sec"
+          }, {
+            "autoTerminatedRelationships" : [ "output stream", "original" ],
+            "bulletinLevel" : "WARN",
+            "bundle" : {
+              "artifact" : "nifi-standard-nar",
+              "group" : "org.apache.nifi",
+              "version" : "1.14.0"
+            },
+            "comments" : "",
+            "componentType" : "PROCESSOR",
+            "concurrentlySchedulableTaskCount" : 1,
+            "executionNode" : "ALL",
+            "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
+            "identifier" : "8ab8dde3-0572-3df4-b7f6-e384514a2618",
+            "name" : "Send Spark Job Failed Email",
+            "penaltyDuration" : "1 sec",
+            "position" : {
+              "x" : 712.0,
+              "y" : -320.0
+            },
+            "properties" : {
+              "argumentsStrategy" : "Command Arguments Property",
+              "Max Attribute Length" : "256",
+              "Command Path" : "${script_dir}/${email_script}",
+              "Argument Delimiter" : ";",
+              "Ignore STDIN" : "true",
+              "Command Arguments" : "${failed_mail_topic_spark};${filename};${now():format('yyyy_MM_dd')};${absolute.hdfs.path}"
+            },
+            "propertyDescriptors" : {
+              "argumentsStrategy" : {
+                "displayName" : "Command Arguments Strategy",
+                "identifiesControllerService" : false,
+                "name" : "argumentsStrategy",
+                "sensitive" : false
+              },
+              "Max Attribute Length" : {
+                "displayName" : "Max Attribute Length",
+                "identifiesControllerService" : false,
+                "name" : "Max Attribute Length",
+                "sensitive" : false
+              },
+              "Command Path" : {
+                "displayName" : "Command Path",
+                "identifiesControllerService" : false,
+                "name" : "Command Path",
+                "sensitive" : false
+              },
+              "Working Directory" : {
+                "displayName" : "Working Directory",
+                "identifiesControllerService" : false,
+                "name" : "Working Directory",
+                "sensitive" : false
+              },
+              "Output Destination Attribute" : {
+                "displayName" : "Output Destination Attribute",
+                "identifiesControllerService" : false,
+                "name" : "Output Destination Attribute",
+                "sensitive" : false
+              },
+              "Argument Delimiter" : {
+                "displayName" : "Argument Delimiter",
+                "identifiesControllerService" : false,
+                "name" : "Argument Delimiter",
+                "sensitive" : false
+              },
+              "Ignore STDIN" : {
+                "displayName" : "Ignore STDIN",
+                "identifiesControllerService" : false,
+                "name" : "Ignore STDIN",
+                "sensitive" : false
+              },
+              "Command Arguments" : {
+                "displayName" : "Command Arguments",
+                "identifiesControllerService" : false,
+                "name" : "Command Arguments",
+                "sensitive" : false
+              }
+            },
+            "runDurationMillis" : 0,
+            "scheduledState" : "ENABLED",
+            "schedulingPeriod" : "2 sec",
+            "schedulingStrategy" : "TIMER_DRIVEN",
+            "style" : { },
+            "type" : "org.apache.nifi.processors.standard.ExecuteStreamCommand",
+            "yieldDuration" : "1 sec"
+          }, {
+            "autoTerminatedRelationships" : [ "output stream", "original" ],
+            "bulletinLevel" : "WARN",
+            "bundle" : {
+              "artifact" : "nifi-standard-nar",
+              "group" : "org.apache.nifi",
+              "version" : "1.14.0"
+            },
+            "comments" : "",
+            "componentType" : "PROCESSOR",
+            "concurrentlySchedulableTaskCount" : 1,
+            "executionNode" : "ALL",
+            "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
+            "identifier" : "86b2a927-eb04-3059-8975-594b737cab2d",
+            "name" : "Send Put HDFS failed Email",
+            "penaltyDuration" : "1 sec",
+            "position" : {
+              "x" : -16.0,
+              "y" : -320.0
+            },
+            "properties" : {
+              "argumentsStrategy" : "Command Arguments Property",
+              "Max Attribute Length" : "256",
+              "Command Path" : "${script_dir}/${email_script}",
+              "Argument Delimiter" : ";",
+              "Ignore STDIN" : "true",
+              "Command Arguments" : "${failed_mail_topic_hdfs};${filename};${now():format('yyyy_MM_dd')};${filepath}"
+            },
+            "propertyDescriptors" : {
+              "argumentsStrategy" : {
+                "displayName" : "Command Arguments Strategy",
+                "identifiesControllerService" : false,
+                "name" : "argumentsStrategy",
+                "sensitive" : false
+              },
+              "Max Attribute Length" : {
+                "displayName" : "Max Attribute Length",
+                "identifiesControllerService" : false,
+                "name" : "Max Attribute Length",
+                "sensitive" : false
+              },
+              "Command Path" : {
+                "displayName" : "Command Path",
+                "identifiesControllerService" : false,
+                "name" : "Command Path",
+                "sensitive" : false
+              },
+              "Working Directory" : {
+                "displayName" : "Working Directory",
+                "identifiesControllerService" : false,
+                "name" : "Working Directory",
+                "sensitive" : false
+              },
+              "Output Destination Attribute" : {
+                "displayName" : "Output Destination Attribute",
+                "identifiesControllerService" : false,
+                "name" : "Output Destination Attribute",
+                "sensitive" : false
+              },
+              "Argument Delimiter" : {
+                "displayName" : "Argument Delimiter",
+                "identifiesControllerService" : false,
+                "name" : "Argument Delimiter",
+                "sensitive" : false
+              },
+              "Ignore STDIN" : {
+                "displayName" : "Ignore STDIN",
+                "identifiesControllerService" : false,
+                "name" : "Ignore STDIN",
+                "sensitive" : false
+              },
+              "Command Arguments" : {
+                "displayName" : "Command Arguments",
+                "identifiesControllerService" : false,
+                "name" : "Command Arguments",
+                "sensitive" : false
+              }
+            },
+            "runDurationMillis" : 0,
+            "scheduledState" : "ENABLED",
+            "schedulingPeriod" : "2 sec",
+            "schedulingStrategy" : "TIMER_DRIVEN",
+            "style" : { },
+            "type" : "org.apache.nifi.processors.standard.ExecuteStreamCommand",
+            "yieldDuration" : "1 sec"
+          }, {
+            "autoTerminatedRelationships" : [ ],
+            "bulletinLevel" : "WARN",
+            "bundle" : {
+              "artifact" : "nifi-standard-nar",
+              "group" : "org.apache.nifi",
+              "version" : "1.14.0"
+            },
+            "comments" : "",
+            "componentType" : "PROCESSOR",
+            "concurrentlySchedulableTaskCount" : 1,
+            "executionNode" : "ALL",
+            "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
+            "identifier" : "cc58b1d2-8015-38d6-bd89-d8d758c22f5b",
+            "name" : "LogAttribute",
+            "penaltyDuration" : "30 sec",
+            "position" : {
+              "x" : 1320.0,
+              "y" : -568.0
             },
             "properties" : {
               "character-set" : "UTF-8",
               "Log Level" : "info",
               "attributes-to-log-regex" : ".*",
-              "Log Payload" : "false"
+              "Log Payload" : "true"
             },
             "propertyDescriptors" : {
               "Log prefix" : {
@@ -2928,42 +3531,28 @@
             "concurrentlySchedulableTaskCount" : 1,
             "executionNode" : "ALL",
             "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-            "identifier" : "bfd25f34-1cb6-38f8-be90-814064da19f3",
-            "name" : "EvaluateXPath",
+            "identifier" : "6e9cfe8e-024c-3029-8e0d-5905a3ea12a6",
+            "name" : "RouteOnAttribute",
             "penaltyDuration" : "30 sec",
             "position" : {
-              "x" : 472.0,
-              "y" : -561.5540161132812
+              "x" : -976.0,
+              "y" : -248.0
             },
             "properties" : {
-              "dateTime" : "/*:measCollecFile/*:fileHeader/*:measCollec/@beginTime",
-              "Destination" : "flowfile-attribute",
-              "Return Type" : "auto-detect",
-              "Validate DTD" : "false"
+              "Routing Strategy" : "Route to Property name",
+              "if_PM" : "${path:endsWith('PM/')}"
             },
             "propertyDescriptors" : {
-              "dateTime" : {
-                "displayName" : "dateTime",
+              "Routing Strategy" : {
+                "displayName" : "Routing Strategy",
                 "identifiesControllerService" : false,
-                "name" : "dateTime",
+                "name" : "Routing Strategy",
                 "sensitive" : false
               },
-              "Destination" : {
-                "displayName" : "Destination",
+              "if_PM" : {
+                "displayName" : "if_PM",
                 "identifiesControllerService" : false,
-                "name" : "Destination",
-                "sensitive" : false
-              },
-              "Return Type" : {
-                "displayName" : "Return Type",
-                "identifiesControllerService" : false,
-                "name" : "Return Type",
-                "sensitive" : false
-              },
-              "Validate DTD" : {
-                "displayName" : "Validate DTD",
-                "identifiesControllerService" : false,
-                "name" : "Validate DTD",
+                "name" : "if_PM",
                 "sensitive" : false
               }
             },
@@ -2972,10 +3561,10 @@
             "schedulingPeriod" : "0 sec",
             "schedulingStrategy" : "TIMER_DRIVEN",
             "style" : { },
-            "type" : "org.apache.nifi.processors.standard.EvaluateXPath",
+            "type" : "org.apache.nifi.processors.standard.RouteOnAttribute",
             "yieldDuration" : "1 sec"
           }, {
-            "autoTerminatedRelationships" : [ "output stream", "original" ],
+            "autoTerminatedRelationships" : [ "original" ],
             "bulletinLevel" : "WARN",
             "bundle" : {
               "artifact" : "nifi-standard-nar",
@@ -2987,20 +3576,20 @@
             "concurrentlySchedulableTaskCount" : 1,
             "executionNode" : "ALL",
             "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-            "identifier" : "8ab8dde3-0572-3df4-b7f6-e384514a2618",
-            "name" : "Send Spark Job Failed Email",
-            "penaltyDuration" : "1 sec",
+            "identifier" : "bfd92510-ce4d-3884-b975-5c3c65f22733",
+            "name" : "Submit Spark Job",
+            "penaltyDuration" : "30 sec",
             "position" : {
-              "x" : 1864.0,
-              "y" : -320.0
+              "x" : 712.0,
+              "y" : -560.0
             },
             "properties" : {
               "argumentsStrategy" : "Command Arguments Property",
               "Max Attribute Length" : "256",
-              "Command Path" : "${script_dir}/${email_script}",
+              "Command Path" : "${script_dir}/${script_file}",
               "Argument Delimiter" : ";",
               "Ignore STDIN" : "true",
-              "Command Arguments" : "${failed_mail_topic_spark};${filename};${now():format('yyyy_MM_dd')};${absolute.hdfs.path}"
+              "Command Arguments" : "${hdfs-url}${absolute.hdfs.path:substring(1)};${pmNbiConfigPath};${csvMappingConfigPath};${now():format('yyyy_MM_dd')}"
             },
             "propertyDescriptors" : {
               "argumentsStrategy" : {
@@ -3054,10 +3643,71 @@
             },
             "runDurationMillis" : 0,
             "scheduledState" : "ENABLED",
-            "schedulingPeriod" : "2 sec",
+            "schedulingPeriod" : "20 sec",
             "schedulingStrategy" : "TIMER_DRIVEN",
             "style" : { },
             "type" : "org.apache.nifi.processors.standard.ExecuteStreamCommand",
+            "yieldDuration" : "1 sec"
+          }, {
+            "autoTerminatedRelationships" : [ "failure" ],
+            "bulletinLevel" : "WARN",
+            "bundle" : {
+              "artifact" : "nifi-standard-nar",
+              "group" : "org.apache.nifi",
+              "version" : "1.14.0"
+            },
+            "comments" : "Decompresses the contents of the tar file",
+            "componentType" : "PROCESSOR",
+            "concurrentlySchedulableTaskCount" : 1,
+            "executionNode" : "ALL",
+            "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
+            "identifier" : "fe7c0116-b230-3601-8f2a-0ce199577cc6",
+            "name" : "Decompress Gzip File",
+            "penaltyDuration" : "30 sec",
+            "position" : {
+              "x" : -1232.0,
+              "y" : -1080.0
+            },
+            "properties" : {
+              "Compression Format" : "gzip",
+              "Mode" : "decompress",
+              "Compression Level" : "1",
+              "Update Filename" : "true"
+            },
+            "propertyDescriptors" : {
+              "Compression Format" : {
+                "displayName" : "Compression Format",
+                "identifiesControllerService" : false,
+                "name" : "Compression Format",
+                "sensitive" : false
+              },
+              "Mode" : {
+                "displayName" : "Mode",
+                "identifiesControllerService" : false,
+                "name" : "Mode",
+                "sensitive" : false
+              },
+              "Compression Level" : {
+                "displayName" : "Compression Level",
+                "identifiesControllerService" : false,
+                "name" : "Compression Level",
+                "sensitive" : false
+              },
+              "Update Filename" : {
+                "displayName" : "Update Filename",
+                "identifiesControllerService" : false,
+                "name" : "Update Filename",
+                "sensitive" : false
+              }
+            },
+            "runDurationMillis" : 0,
+            "scheduledState" : "ENABLED",
+            "schedulingPeriod" : "0 sec",
+            "schedulingStrategy" : "TIMER_DRIVEN",
+            "style" : {
+              "background-color" : "#ffd1d1"
+            },
+            "type" : "org.apache.nifi.processors.standard.CompressContent",
             "yieldDuration" : "1 sec"
           }, {
             "autoTerminatedRelationships" : [ ],
@@ -3072,19 +3722,19 @@
             "concurrentlySchedulableTaskCount" : 1,
             "executionNode" : "ALL",
             "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-            "identifier" : "865c54e7-3de4-37a6-a90d-c0427529251b",
+            "identifier" : "55face8f-8b35-3c3c-bd7e-1e0530aebf0a",
             "name" : "Put File to HDFS without Compression",
             "penaltyDuration" : "30 sec",
             "position" : {
-              "x" : 1216.0,
-              "y" : -304.0
+              "x" : -16.0,
+              "y" : -560.0
             },
             "properties" : {
               "Hadoop Configuration Resources" : "/home/hdoop/hadoop-3.2.2/etc/hadoop/hdfs-site.xml,/home/hdoop/hadoop-3.2.2/etc/hadoop/core-site.xml",
               "Compression codec" : "NONE",
               "Ignore Locality" : "false",
               "Kerberos Relogin Period" : "4 hours",
-              "Directory" : "/gsb/${dateTime}/${filepath:substringAfter('gsb/')}",
+              "Directory" : "/gsb/${filepath:substringAfter('gsb/')}/${dateTime}",
               "Conflict Resolution Strategy" : "replace"
             },
             "propertyDescriptors" : {
@@ -3212,565 +3862,13 @@
             },
             "type" : "org.apache.nifi.processors.hadoop.PutHDFS",
             "yieldDuration" : "1 sec"
-          }, {
-            "autoTerminatedRelationships" : [ "output stream", "original" ],
-            "bulletinLevel" : "WARN",
-            "bundle" : {
-              "artifact" : "nifi-standard-nar",
-              "group" : "org.apache.nifi",
-              "version" : "1.14.0"
-            },
-            "comments" : "",
-            "componentType" : "PROCESSOR",
-            "concurrentlySchedulableTaskCount" : 1,
-            "executionNode" : "ALL",
-            "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-            "identifier" : "1a272e3a-4480-3252-896b-ff010f61d85c",
-            "name" : "Send Put HDFS failed Email",
-            "penaltyDuration" : "1 sec",
-            "position" : {
-              "x" : 1224.0,
-              "y" : -64.0
-            },
-            "properties" : {
-              "argumentsStrategy" : "Command Arguments Property",
-              "Max Attribute Length" : "256",
-              "Command Path" : "${script_dir}/${email_script}",
-              "Argument Delimiter" : ";",
-              "Ignore STDIN" : "true",
-              "Command Arguments" : "${failed_mail_topic_hdfs};${filename};${now():format('yyyy_MM_dd')};${filepath}"
-            },
-            "propertyDescriptors" : {
-              "argumentsStrategy" : {
-                "displayName" : "Command Arguments Strategy",
-                "identifiesControllerService" : false,
-                "name" : "argumentsStrategy",
-                "sensitive" : false
-              },
-              "Max Attribute Length" : {
-                "displayName" : "Max Attribute Length",
-                "identifiesControllerService" : false,
-                "name" : "Max Attribute Length",
-                "sensitive" : false
-              },
-              "Command Path" : {
-                "displayName" : "Command Path",
-                "identifiesControllerService" : false,
-                "name" : "Command Path",
-                "sensitive" : false
-              },
-              "Working Directory" : {
-                "displayName" : "Working Directory",
-                "identifiesControllerService" : false,
-                "name" : "Working Directory",
-                "sensitive" : false
-              },
-              "Output Destination Attribute" : {
-                "displayName" : "Output Destination Attribute",
-                "identifiesControllerService" : false,
-                "name" : "Output Destination Attribute",
-                "sensitive" : false
-              },
-              "Argument Delimiter" : {
-                "displayName" : "Argument Delimiter",
-                "identifiesControllerService" : false,
-                "name" : "Argument Delimiter",
-                "sensitive" : false
-              },
-              "Ignore STDIN" : {
-                "displayName" : "Ignore STDIN",
-                "identifiesControllerService" : false,
-                "name" : "Ignore STDIN",
-                "sensitive" : false
-              },
-              "Command Arguments" : {
-                "displayName" : "Command Arguments",
-                "identifiesControllerService" : false,
-                "name" : "Command Arguments",
-                "sensitive" : false
-              }
-            },
-            "runDurationMillis" : 0,
-            "scheduledState" : "ENABLED",
-            "schedulingPeriod" : "2 sec",
-            "schedulingStrategy" : "TIMER_DRIVEN",
-            "style" : { },
-            "type" : "org.apache.nifi.processors.standard.ExecuteStreamCommand",
-            "yieldDuration" : "1 sec"
-          }, {
-            "autoTerminatedRelationships" : [ ],
-            "bulletinLevel" : "WARN",
-            "bundle" : {
-              "artifact" : "nifi-standard-nar",
-              "group" : "org.apache.nifi",
-              "version" : "1.14.0"
-            },
-            "comments" : "",
-            "componentType" : "PROCESSOR",
-            "concurrentlySchedulableTaskCount" : 1,
-            "executionNode" : "ALL",
-            "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-            "identifier" : "c84ee4fd-000e-3d41-9bbe-9dcaf6c77982",
-            "name" : "Could not find begin time ",
-            "penaltyDuration" : "30 sec",
-            "position" : {
-              "x" : 552.0,
-              "y" : -321.55401611328125
-            },
-            "properties" : {
-              "character-set" : "UTF-8",
-              "Log Level" : "info",
-              "attributes-to-log-regex" : ".*",
-              "Log Payload" : "false"
-            },
-            "propertyDescriptors" : {
-              "Log prefix" : {
-                "displayName" : "Log prefix",
-                "identifiesControllerService" : false,
-                "name" : "Log prefix",
-                "sensitive" : false
-              },
-              "character-set" : {
-                "displayName" : "Character Set",
-                "identifiesControllerService" : false,
-                "name" : "character-set",
-                "sensitive" : false
-              },
-              "Log Level" : {
-                "displayName" : "Log Level",
-                "identifiesControllerService" : false,
-                "name" : "Log Level",
-                "sensitive" : false
-              },
-              "attributes-to-ignore-regex" : {
-                "displayName" : "Attributes to Ignore by Regular Expression",
-                "identifiesControllerService" : false,
-                "name" : "attributes-to-ignore-regex",
-                "sensitive" : false
-              },
-              "Attributes to Ignore" : {
-                "displayName" : "Attributes to Ignore",
-                "identifiesControllerService" : false,
-                "name" : "Attributes to Ignore",
-                "sensitive" : false
-              },
-              "Attributes to Log" : {
-                "displayName" : "Attributes to Log",
-                "identifiesControllerService" : false,
-                "name" : "Attributes to Log",
-                "sensitive" : false
-              },
-              "attributes-to-log-regex" : {
-                "displayName" : "Attributes to Log by Regular Expression",
-                "identifiesControllerService" : false,
-                "name" : "attributes-to-log-regex",
-                "sensitive" : false
-              },
-              "Log Payload" : {
-                "displayName" : "Log Payload",
-                "identifiesControllerService" : false,
-                "name" : "Log Payload",
-                "sensitive" : false
-              }
-            },
-            "runDurationMillis" : 0,
-            "scheduledState" : "ENABLED",
-            "schedulingPeriod" : "0 sec",
-            "schedulingStrategy" : "TIMER_DRIVEN",
-            "style" : { },
-            "type" : "org.apache.nifi.processors.standard.LogAttribute",
-            "yieldDuration" : "1 sec"
-          }, {
-            "autoTerminatedRelationships" : [ ],
-            "bulletinLevel" : "WARN",
-            "bundle" : {
-              "artifact" : "nifi-standard-nar",
-              "group" : "org.apache.nifi",
-              "version" : "1.14.0"
-            },
-            "comments" : "Routes the flow based on the extension of the file",
-            "componentType" : "PROCESSOR",
-            "concurrentlySchedulableTaskCount" : 1,
-            "executionNode" : "ALL",
-            "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-            "identifier" : "b5512402-ff27-38aa-b7a1-41c4bab0b4fc",
-            "name" : "Route On File Extension",
-            "penaltyDuration" : "30 sec",
-            "position" : {
-              "x" : -240.0,
-              "y" : -569.5540161132812
-            },
-            "properties" : {
-              "Routing Strategy" : "Route to Property name",
-              "if Zip" : "${filename:endsWith('zip')}",
-              "if Gzip" : "${filename:endsWith('gz')}",
-              "if Xml" : "${filename:endsWith('xml')}"
-            },
-            "propertyDescriptors" : {
-              "Routing Strategy" : {
-                "displayName" : "Routing Strategy",
-                "identifiesControllerService" : false,
-                "name" : "Routing Strategy",
-                "sensitive" : false
-              },
-              "if Zip" : {
-                "displayName" : "if Zip",
-                "identifiesControllerService" : false,
-                "name" : "if Zip",
-                "sensitive" : false
-              },
-              "if Gzip" : {
-                "displayName" : "if Gzip",
-                "identifiesControllerService" : false,
-                "name" : "if Gzip",
-                "sensitive" : false
-              },
-              "if Xml" : {
-                "displayName" : "if Xml",
-                "identifiesControllerService" : false,
-                "name" : "if Xml",
-                "sensitive" : false
-              }
-            },
-            "runDurationMillis" : 0,
-            "scheduledState" : "ENABLED",
-            "schedulingPeriod" : "0 sec",
-            "schedulingStrategy" : "TIMER_DRIVEN",
-            "style" : {
-              "background-color" : "#b8f6ff"
-            },
-            "type" : "org.apache.nifi.processors.standard.RouteOnAttribute",
-            "yieldDuration" : "1 sec"
-          }, {
-            "autoTerminatedRelationships" : [ "failure" ],
-            "bulletinLevel" : "WARN",
-            "bundle" : {
-              "artifact" : "nifi-standard-nar",
-              "group" : "org.apache.nifi",
-              "version" : "1.14.0"
-            },
-            "comments" : "Decompresses the contents of the tar file",
-            "componentType" : "PROCESSOR",
-            "concurrentlySchedulableTaskCount" : 1,
-            "executionNode" : "ALL",
-            "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-            "identifier" : "a19b4243-a489-3e95-93c8-ca5e6fe39228",
-            "name" : "Decompress Gzip File",
-            "penaltyDuration" : "30 sec",
-            "position" : {
-              "x" : 24.0,
-              "y" : -800.0
-            },
-            "properties" : {
-              "Compression Format" : "gzip",
-              "Mode" : "decompress",
-              "Compression Level" : "1",
-              "Update Filename" : "true"
-            },
-            "propertyDescriptors" : {
-              "Compression Format" : {
-                "displayName" : "Compression Format",
-                "identifiesControllerService" : false,
-                "name" : "Compression Format",
-                "sensitive" : false
-              },
-              "Mode" : {
-                "displayName" : "Mode",
-                "identifiesControllerService" : false,
-                "name" : "Mode",
-                "sensitive" : false
-              },
-              "Compression Level" : {
-                "displayName" : "Compression Level",
-                "identifiesControllerService" : false,
-                "name" : "Compression Level",
-                "sensitive" : false
-              },
-              "Update Filename" : {
-                "displayName" : "Update Filename",
-                "identifiesControllerService" : false,
-                "name" : "Update Filename",
-                "sensitive" : false
-              }
-            },
-            "runDurationMillis" : 0,
-            "scheduledState" : "ENABLED",
-            "schedulingPeriod" : "0 sec",
-            "schedulingStrategy" : "TIMER_DRIVEN",
-            "style" : {
-              "background-color" : "#ffd1d1"
-            },
-            "type" : "org.apache.nifi.processors.standard.CompressContent",
-            "yieldDuration" : "1 sec"
-          }, {
-            "autoTerminatedRelationships" : [ ],
-            "bulletinLevel" : "WARN",
-            "bundle" : {
-              "artifact" : "nifi-standard-nar",
-              "group" : "org.apache.nifi",
-              "version" : "1.14.0"
-            },
-            "comments" : "",
-            "componentType" : "PROCESSOR",
-            "concurrentlySchedulableTaskCount" : 1,
-            "executionNode" : "ALL",
-            "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-            "identifier" : "cc58b1d2-8015-38d6-bd89-d8d758c22f5b",
-            "name" : "LogAttribute",
-            "penaltyDuration" : "30 sec",
-            "position" : {
-              "x" : 2480.0,
-              "y" : -560.0
-            },
-            "properties" : {
-              "character-set" : "UTF-8",
-              "Log Level" : "info",
-              "attributes-to-log-regex" : ".*",
-              "Log Payload" : "true"
-            },
-            "propertyDescriptors" : {
-              "Log prefix" : {
-                "displayName" : "Log prefix",
-                "identifiesControllerService" : false,
-                "name" : "Log prefix",
-                "sensitive" : false
-              },
-              "character-set" : {
-                "displayName" : "Character Set",
-                "identifiesControllerService" : false,
-                "name" : "character-set",
-                "sensitive" : false
-              },
-              "Log Level" : {
-                "displayName" : "Log Level",
-                "identifiesControllerService" : false,
-                "name" : "Log Level",
-                "sensitive" : false
-              },
-              "attributes-to-ignore-regex" : {
-                "displayName" : "Attributes to Ignore by Regular Expression",
-                "identifiesControllerService" : false,
-                "name" : "attributes-to-ignore-regex",
-                "sensitive" : false
-              },
-              "Attributes to Ignore" : {
-                "displayName" : "Attributes to Ignore",
-                "identifiesControllerService" : false,
-                "name" : "Attributes to Ignore",
-                "sensitive" : false
-              },
-              "Attributes to Log" : {
-                "displayName" : "Attributes to Log",
-                "identifiesControllerService" : false,
-                "name" : "Attributes to Log",
-                "sensitive" : false
-              },
-              "attributes-to-log-regex" : {
-                "displayName" : "Attributes to Log by Regular Expression",
-                "identifiesControllerService" : false,
-                "name" : "attributes-to-log-regex",
-                "sensitive" : false
-              },
-              "Log Payload" : {
-                "displayName" : "Log Payload",
-                "identifiesControllerService" : false,
-                "name" : "Log Payload",
-                "sensitive" : false
-              }
-            },
-            "runDurationMillis" : 0,
-            "scheduledState" : "ENABLED",
-            "schedulingPeriod" : "0 sec",
-            "schedulingStrategy" : "TIMER_DRIVEN",
-            "style" : { },
-            "type" : "org.apache.nifi.processors.standard.LogAttribute",
-            "yieldDuration" : "1 sec"
-          }, {
-            "autoTerminatedRelationships" : [ ],
-            "bulletinLevel" : "WARN",
-            "bundle" : {
-              "artifact" : "nifi-standard-nar",
-              "group" : "org.apache.nifi",
-              "version" : "1.14.0"
-            },
-            "comments" : "",
-            "componentType" : "PROCESSOR",
-            "concurrentlySchedulableTaskCount" : 1,
-            "executionNode" : "ALL",
-            "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-            "identifier" : "6e9cfe8e-024c-3029-8e0d-5905a3ea12a6",
-            "name" : "RouteOnAttribute",
-            "penaltyDuration" : "30 sec",
-            "position" : {
-              "x" : 280.0,
-              "y" : 120.0
-            },
-            "properties" : {
-              "Routing Strategy" : "Route to Property name",
-              "if_PM" : "${path:endsWith('PM/')}"
-            },
-            "propertyDescriptors" : {
-              "Routing Strategy" : {
-                "displayName" : "Routing Strategy",
-                "identifiesControllerService" : false,
-                "name" : "Routing Strategy",
-                "sensitive" : false
-              },
-              "if_PM" : {
-                "displayName" : "if_PM",
-                "identifiesControllerService" : false,
-                "name" : "if_PM",
-                "sensitive" : false
-              }
-            },
-            "runDurationMillis" : 0,
-            "scheduledState" : "ENABLED",
-            "schedulingPeriod" : "0 sec",
-            "schedulingStrategy" : "TIMER_DRIVEN",
-            "style" : { },
-            "type" : "org.apache.nifi.processors.standard.RouteOnAttribute",
-            "yieldDuration" : "1 sec"
-          }, {
-            "autoTerminatedRelationships" : [ "original" ],
-            "bulletinLevel" : "WARN",
-            "bundle" : {
-              "artifact" : "nifi-standard-nar",
-              "group" : "org.apache.nifi",
-              "version" : "1.14.0"
-            },
-            "comments" : "",
-            "componentType" : "PROCESSOR",
-            "concurrentlySchedulableTaskCount" : 1,
-            "executionNode" : "ALL",
-            "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-            "identifier" : "bfd92510-ce4d-3884-b975-5c3c65f22733",
-            "name" : "Submit Spark Job",
-            "penaltyDuration" : "30 sec",
-            "position" : {
-              "x" : 1864.0,
-              "y" : -560.0
-            },
-            "properties" : {
-              "argumentsStrategy" : "Command Arguments Property",
-              "Max Attribute Length" : "256",
-              "Command Path" : "${script_dir}/${script_file}",
-              "Argument Delimiter" : ";",
-              "Ignore STDIN" : "true",
-              "Command Arguments" : "${hdfs-url}${absolute.hdfs.path:substring(1)}/${filename};${now():format('yyyy_MM_dd')}"
-            },
-            "propertyDescriptors" : {
-              "argumentsStrategy" : {
-                "displayName" : "Command Arguments Strategy",
-                "identifiesControllerService" : false,
-                "name" : "argumentsStrategy",
-                "sensitive" : false
-              },
-              "Max Attribute Length" : {
-                "displayName" : "Max Attribute Length",
-                "identifiesControllerService" : false,
-                "name" : "Max Attribute Length",
-                "sensitive" : false
-              },
-              "Command Path" : {
-                "displayName" : "Command Path",
-                "identifiesControllerService" : false,
-                "name" : "Command Path",
-                "sensitive" : false
-              },
-              "Working Directory" : {
-                "displayName" : "Working Directory",
-                "identifiesControllerService" : false,
-                "name" : "Working Directory",
-                "sensitive" : false
-              },
-              "Output Destination Attribute" : {
-                "displayName" : "Output Destination Attribute",
-                "identifiesControllerService" : false,
-                "name" : "Output Destination Attribute",
-                "sensitive" : false
-              },
-              "Argument Delimiter" : {
-                "displayName" : "Argument Delimiter",
-                "identifiesControllerService" : false,
-                "name" : "Argument Delimiter",
-                "sensitive" : false
-              },
-              "Ignore STDIN" : {
-                "displayName" : "Ignore STDIN",
-                "identifiesControllerService" : false,
-                "name" : "Ignore STDIN",
-                "sensitive" : false
-              },
-              "Command Arguments" : {
-                "displayName" : "Command Arguments",
-                "identifiesControllerService" : false,
-                "name" : "Command Arguments",
-                "sensitive" : false
-              }
-            },
-            "runDurationMillis" : 0,
-            "scheduledState" : "ENABLED",
-            "schedulingPeriod" : "20 sec",
-            "schedulingStrategy" : "TIMER_DRIVEN",
-            "style" : { },
-            "type" : "org.apache.nifi.processors.standard.ExecuteStreamCommand",
-            "yieldDuration" : "1 sec"
-          }, {
-            "autoTerminatedRelationships" : [ "original", "failure" ],
-            "bulletinLevel" : "WARN",
-            "bundle" : {
-              "artifact" : "nifi-standard-nar",
-              "group" : "org.apache.nifi",
-              "version" : "1.14.0"
-            },
-            "comments" : "Unpack the zip file an send it back to Route of File Extension so the file inside the zip can be routed accordingly.",
-            "componentType" : "PROCESSOR",
-            "concurrentlySchedulableTaskCount" : 1,
-            "executionNode" : "ALL",
-            "groupIdentifier" : "f872f4ef-9194-33b5-9fb9-22932b0e46d1",
-            "identifier" : "54849db6-497d-308f-8f47-5be22e557638",
-            "name" : "Unzip File",
-            "penaltyDuration" : "30 sec",
-            "position" : {
-              "x" : -824.0,
-              "y" : -400.0
-            },
-            "properties" : {
-              "Packaging Format" : "zip",
-              "File Filter" : ".*"
-            },
-            "propertyDescriptors" : {
-              "Packaging Format" : {
-                "displayName" : "Packaging Format",
-                "identifiesControllerService" : false,
-                "name" : "Packaging Format",
-                "sensitive" : false
-              },
-              "File Filter" : {
-                "displayName" : "File Filter",
-                "identifiesControllerService" : false,
-                "name" : "File Filter",
-                "sensitive" : false
-              },
-              "Password" : {
-                "displayName" : "Password",
-                "identifiesControllerService" : false,
-                "name" : "Password",
-                "sensitive" : true
-              }
-            },
-            "runDurationMillis" : 0,
-            "scheduledState" : "ENABLED",
-            "schedulingPeriod" : "2 sec",
-            "schedulingStrategy" : "TIMER_DRIVEN",
-            "style" : {
-              "background-color" : "#b8b8b8"
-            },
-            "type" : "org.apache.nifi.processors.standard.UnpackContent",
-            "yieldDuration" : "1 sec"
           } ],
           "remoteProcessGroups" : [ ],
           "variables" : {
+            "hdfs_list_dir_script" : "hdfs_list_dir.sh",
+            "csvMappingConfigPath" : "/huawei_utils/csv_mapping_config.xml",
+            "hdfs_list_dir_file" : "/home/hdoop/part_time/gsb/path_list_dir/path_list_file.txt",
+            "pmNbiConfigPath" : "/huawei_utils/hw_pmnbi_3gpp_config_spark.xml",
             "script_file" : "huawei_script.sh"
           }
         }, {
@@ -3779,12 +3877,396 @@
           "connections" : [ {
             "backPressureDataSizeThreshold" : "1 GB",
             "backPressureObjectThreshold" : 10000,
+            "bends" : [ ],
+            "componentType" : "CONNECTION",
+            "destination" : {
+              "comments" : "",
+              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+              "id" : "be161dde-013d-3f29-b741-80fbbc357934",
+              "name" : "UpdateAttribute",
+              "type" : "PROCESSOR"
+            },
+            "flowFileExpiration" : "0 sec",
+            "groupIdentifier" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+            "identifier" : "e71c558d-d6e9-3e9c-bc9c-c6caa969b608",
+            "labelIndex" : 1,
+            "loadBalanceCompression" : "DO_NOT_COMPRESS",
+            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
+            "name" : "",
+            "partitioningAttribute" : "",
+            "prioritizers" : [ ],
+            "selectedRelationships" : [ "matched" ],
+            "source" : {
+              "comments" : "",
+              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+              "id" : "2224ef31-f7ad-336d-9edb-11f93d9b4982",
+              "name" : "EvaluateXPath",
+              "type" : "PROCESSOR"
+            },
+            "zIndex" : 0
+          }, {
+            "backPressureDataSizeThreshold" : "1 GB",
+            "backPressureObjectThreshold" : 10000,
+            "bends" : [ ],
+            "componentType" : "CONNECTION",
+            "destination" : {
+              "comments" : "",
+              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+              "id" : "6ed08fa1-206f-310f-be64-5340ecb71acb",
+              "name" : "UpdateAttribute",
+              "type" : "PROCESSOR"
+            },
+            "flowFileExpiration" : "0 sec",
+            "groupIdentifier" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+            "identifier" : "7c1fea69-cf76-3dc0-98c5-ff093d49f0fc",
+            "labelIndex" : 1,
+            "loadBalanceCompression" : "DO_NOT_COMPRESS",
+            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
+            "name" : "",
+            "partitioningAttribute" : "",
+            "prioritizers" : [ ],
+            "selectedRelationships" : [ "matched" ],
+            "source" : {
+              "comments" : "",
+              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+              "id" : "30b577f0-0dec-330c-ab3b-6291dff7a223",
+              "name" : "ExtractText",
+              "type" : "PROCESSOR"
+            },
+            "zIndex" : 0
+          }, {
+            "backPressureDataSizeThreshold" : "1 GB",
+            "backPressureObjectThreshold" : 10000,
             "bends" : [ {
-              "x" : 3145.7482914069446,
-              "y" : -206.70526782480476
+              "x" : 2491.568115234375,
+              "y" : 60.384613037109375
             }, {
-              "x" : 3145.7482914069446,
-              "y" : -156.70526782480476
+              "x" : 2491.568115234375,
+              "y" : 116.38461303710938
+            } ],
+            "componentType" : "CONNECTION",
+            "destination" : {
+              "comments" : "",
+              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+              "id" : "e7747ea9-000b-3447-bfeb-3e759fcf20f0",
+              "name" : "Send Put HDFS failed Email",
+              "type" : "PROCESSOR"
+            },
+            "flowFileExpiration" : "0 sec",
+            "groupIdentifier" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+            "identifier" : "9ac6bd6c-939e-3cd9-9e55-bfcc9e154cda",
+            "labelIndex" : 1,
+            "loadBalanceCompression" : "DO_NOT_COMPRESS",
+            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
+            "name" : "",
+            "partitioningAttribute" : "",
+            "prioritizers" : [ ],
+            "selectedRelationships" : [ "nonzero status" ],
+            "source" : {
+              "comments" : "",
+              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+              "id" : "e7747ea9-000b-3447-bfeb-3e759fcf20f0",
+              "name" : "Send Put HDFS failed Email",
+              "type" : "PROCESSOR"
+            },
+            "zIndex" : 0
+          }, {
+            "backPressureDataSizeThreshold" : "1 GB",
+            "backPressureObjectThreshold" : 10000,
+            "bends" : [ ],
+            "componentType" : "CONNECTION",
+            "destination" : {
+              "comments" : "",
+              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+              "id" : "30b577f0-0dec-330c-ab3b-6291dff7a223",
+              "name" : "ExtractText",
+              "type" : "PROCESSOR"
+            },
+            "flowFileExpiration" : "0 sec",
+            "groupIdentifier" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+            "identifier" : "23f37dd1-1076-3354-97e8-0dce156794ab",
+            "labelIndex" : 1,
+            "loadBalanceCompression" : "DO_NOT_COMPRESS",
+            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
+            "name" : "",
+            "partitioningAttribute" : "",
+            "prioritizers" : [ ],
+            "selectedRelationships" : [ "removed_header" ],
+            "source" : {
+              "comments" : "",
+              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+              "id" : "6d9326ac-2399-3b64-8e7f-1cbbed97b664",
+              "name" : "Remove header file",
+              "type" : "PROCESSOR"
+            },
+            "zIndex" : 0
+          }, {
+            "backPressureDataSizeThreshold" : "1 GB",
+            "backPressureObjectThreshold" : 10000,
+            "bends" : [ ],
+            "componentType" : "CONNECTION",
+            "destination" : {
+              "comments" : "Decompresses the contents of the tar file",
+              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+              "id" : "a176085b-2444-3674-84bf-058c05293fad",
+              "name" : "Decompress Gzip File",
+              "type" : "PROCESSOR"
+            },
+            "flowFileExpiration" : "0 sec",
+            "groupIdentifier" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+            "identifier" : "3df8d806-5009-3080-a8f4-d5f579717ad3",
+            "labelIndex" : 1,
+            "loadBalanceCompression" : "DO_NOT_COMPRESS",
+            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
+            "name" : "",
+            "partitioningAttribute" : "",
+            "prioritizers" : [ ],
+            "selectedRelationships" : [ "if Gzip" ],
+            "source" : {
+              "comments" : "Routes the flow based on the extension of the file",
+              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+              "id" : "b0e2c600-ebdd-3cdc-8ce3-0f70fd363d2a",
+              "name" : "Route On File Extension",
+              "type" : "PROCESSOR"
+            },
+            "zIndex" : 0
+          }, {
+            "backPressureDataSizeThreshold" : "1 GB",
+            "backPressureObjectThreshold" : 10000,
+            "bends" : [ {
+              "x" : 1768.0,
+              "y" : -704.0
+            }, {
+              "x" : 1768.0,
+              "y" : -704.0
+            } ],
+            "componentType" : "CONNECTION",
+            "destination" : {
+              "comments" : "",
+              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+              "id" : "c1d9b8ce-ada6-3ca1-94ef-d6127b5856dd",
+              "name" : "If Begin Time Not Found",
+              "type" : "PROCESSOR"
+            },
+            "flowFileExpiration" : "0 sec",
+            "groupIdentifier" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+            "identifier" : "10ba24c8-6c9e-372c-afae-274fa936be97",
+            "labelIndex" : 0,
+            "loadBalanceCompression" : "DO_NOT_COMPRESS",
+            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
+            "name" : "",
+            "partitioningAttribute" : "",
+            "prioritizers" : [ ],
+            "selectedRelationships" : [ "failure" ],
+            "source" : {
+              "comments" : "",
+              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+              "id" : "2224ef31-f7ad-336d-9edb-11f93d9b4982",
+              "name" : "EvaluateXPath",
+              "type" : "PROCESSOR"
+            },
+            "zIndex" : 0
+          }, {
+            "backPressureDataSizeThreshold" : "1 GB",
+            "backPressureObjectThreshold" : 10000,
+            "bends" : [ ],
+            "componentType" : "CONNECTION",
+            "destination" : {
+              "comments" : "",
+              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+              "id" : "d906f2ec-fe0a-353f-8911-c92bccfbdebf",
+              "name" : "LogAttribute",
+              "type" : "PROCESSOR"
+            },
+            "flowFileExpiration" : "0 sec",
+            "groupIdentifier" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+            "identifier" : "128aafca-11ab-3f98-80b9-34a5b32ac3ee",
+            "labelIndex" : 1,
+            "loadBalanceCompression" : "DO_NOT_COMPRESS",
+            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
+            "name" : "",
+            "partitioningAttribute" : "",
+            "prioritizers" : [ ],
+            "selectedRelationships" : [ "nonzero status" ],
+            "source" : {
+              "comments" : "",
+              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+              "id" : "c0dfc84d-8173-388b-af2c-3d50a74a56cb",
+              "name" : "ExecuteStreamCommand",
+              "type" : "PROCESSOR"
+            },
+            "zIndex" : 0
+          }, {
+            "backPressureDataSizeThreshold" : "1 GB",
+            "backPressureObjectThreshold" : 10000,
+            "bends" : [ {
+              "x" : 360.0,
+              "y" : -440.0
+            }, {
+              "x" : 360.0,
+              "y" : -440.0
+            } ],
+            "componentType" : "CONNECTION",
+            "destination" : {
+              "comments" : "Routes the flow based on the extension of the file",
+              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+              "id" : "b0e2c600-ebdd-3cdc-8ce3-0f70fd363d2a",
+              "name" : "Route On File Extension",
+              "type" : "PROCESSOR"
+            },
+            "flowFileExpiration" : "0 sec",
+            "groupIdentifier" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+            "identifier" : "10d80b99-6bc1-3e4f-8ef5-7ba25e0c5d4f",
+            "labelIndex" : 1,
+            "loadBalanceCompression" : "DO_NOT_COMPRESS",
+            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
+            "name" : "",
+            "partitioningAttribute" : "",
+            "prioritizers" : [ ],
+            "selectedRelationships" : [ "success" ],
+            "source" : {
+              "comments" : "Unpack the zip file an send it back to Route of File Extension so the file inside the zip can be routed accordingly.",
+              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+              "id" : "f7843c4c-927e-3c74-805d-10ca8ebffb54",
+              "name" : "Unzip File",
+              "type" : "PROCESSOR"
+            },
+            "zIndex" : 0
+          }, {
+            "backPressureDataSizeThreshold" : "1 GB",
+            "backPressureObjectThreshold" : 10000,
+            "bends" : [ ],
+            "componentType" : "CONNECTION",
+            "destination" : {
+              "comments" : "",
+              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+              "id" : "4700307c-0313-3aac-8b9f-a40a8936ac47",
+              "name" : "RouteOnAttribute",
+              "type" : "PROCESSOR"
+            },
+            "flowFileExpiration" : "0 sec",
+            "groupIdentifier" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+            "identifier" : "b0abef09-5eee-3557-b341-980dbea724b1",
+            "labelIndex" : 1,
+            "loadBalanceCompression" : "DO_NOT_COMPRESS",
+            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
+            "name" : "",
+            "partitioningAttribute" : "",
+            "prioritizers" : [ ],
+            "selectedRelationships" : [ "" ],
+            "source" : {
+              "comments" : "",
+              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+              "id" : "e6f1175d-34bf-31ea-aa1a-f71ea01e6d7f",
+              "name" : "Input Flowfiles",
+              "type" : "INPUT_PORT"
+            },
+            "zIndex" : 0
+          }, {
+            "backPressureDataSizeThreshold" : "1 GB",
+            "backPressureObjectThreshold" : 10000,
+            "bends" : [ {
+              "x" : 4365.0,
+              "y" : -449.0
+            }, {
+              "x" : 4365.0,
+              "y" : -399.0
+            } ],
+            "componentType" : "CONNECTION",
+            "destination" : {
+              "comments" : "",
+              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+              "id" : "1c14f8f5-9d04-312c-a9a9-2ad5debea79d",
+              "name" : "FetchFile",
+              "type" : "PROCESSOR"
+            },
+            "flowFileExpiration" : "0 sec",
+            "groupIdentifier" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+            "identifier" : "278d7852-c0c3-3d3e-b1c9-68cb9d507829",
+            "labelIndex" : 1,
+            "loadBalanceCompression" : "DO_NOT_COMPRESS",
+            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
+            "name" : "",
+            "partitioningAttribute" : "",
+            "prioritizers" : [ ],
+            "selectedRelationships" : [ "permission.denied" ],
+            "source" : {
+              "comments" : "",
+              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+              "id" : "1c14f8f5-9d04-312c-a9a9-2ad5debea79d",
+              "name" : "FetchFile",
+              "type" : "PROCESSOR"
+            },
+            "zIndex" : 0
+          }, {
+            "backPressureDataSizeThreshold" : "1 GB",
+            "backPressureObjectThreshold" : 10000,
+            "bends" : [ ],
+            "componentType" : "CONNECTION",
+            "destination" : {
+              "comments" : "",
+              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+              "id" : "e7747ea9-000b-3447-bfeb-3e759fcf20f0",
+              "name" : "Send Put HDFS failed Email",
+              "type" : "PROCESSOR"
+            },
+            "flowFileExpiration" : "0 sec",
+            "groupIdentifier" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+            "identifier" : "a57cc1a2-9995-31cf-8925-e0715a3b7897",
+            "labelIndex" : 1,
+            "loadBalanceCompression" : "DO_NOT_COMPRESS",
+            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
+            "name" : "",
+            "partitioningAttribute" : "",
+            "prioritizers" : [ ],
+            "selectedRelationships" : [ "failure" ],
+            "source" : {
+              "comments" : "Write XML file to Hadoop Distributed File System (HDFS) with gzip compression",
+              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+              "id" : "d24bf3c4-df0f-36a1-b170-60922edf7621",
+              "name" : "Put File to HDFS without Compression",
+              "type" : "PROCESSOR"
+            },
+            "zIndex" : 0
+          }, {
+            "backPressureDataSizeThreshold" : "1 GB",
+            "backPressureObjectThreshold" : 10000,
+            "bends" : [ ],
+            "componentType" : "CONNECTION",
+            "destination" : {
+              "comments" : "",
+              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+              "id" : "6d9326ac-2399-3b64-8e7f-1cbbed97b664",
+              "name" : "Remove header file",
+              "type" : "PROCESSOR"
+            },
+            "flowFileExpiration" : "0 sec",
+            "groupIdentifier" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+            "identifier" : "3613d71a-de10-3e4b-88b5-d53383ca6f84",
+            "labelIndex" : 1,
+            "loadBalanceCompression" : "DO_NOT_COMPRESS",
+            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
+            "name" : "",
+            "partitioningAttribute" : "",
+            "prioritizers" : [ ],
+            "selectedRelationships" : [ "splits" ],
+            "source" : {
+              "comments" : "",
+              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+              "id" : "7d012da2-6dcd-3774-a0ca-99ccb9e73cad",
+              "name" : "SplitText",
+              "type" : "PROCESSOR"
+            },
+            "zIndex" : 0
+          }, {
+            "backPressureDataSizeThreshold" : "1 GB",
+            "backPressureObjectThreshold" : 10000,
+            "bends" : [ {
+              "x" : 4379.635986719444,
+              "y" : 48.15308483632805
+            }, {
+              "x" : 4379.635986719444,
+              "y" : 98.15308483632805
             } ],
             "componentType" : "CONNECTION",
             "destination" : {
@@ -3876,6 +4358,39 @@
             "backPressureDataSizeThreshold" : "1 GB",
             "backPressureObjectThreshold" : 10000,
             "bends" : [ {
+              "x" : 3776.0,
+              "y" : -552.0
+            } ],
+            "componentType" : "CONNECTION",
+            "destination" : {
+              "comments" : "",
+              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+              "id" : "1c14f8f5-9d04-312c-a9a9-2ad5debea79d",
+              "name" : "FetchFile",
+              "type" : "PROCESSOR"
+            },
+            "flowFileExpiration" : "0 sec",
+            "groupIdentifier" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+            "identifier" : "e04cf497-88d2-35a5-9202-9d31c2d13a4a",
+            "labelIndex" : 1,
+            "loadBalanceCompression" : "DO_NOT_COMPRESS",
+            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
+            "name" : "",
+            "partitioningAttribute" : "",
+            "prioritizers" : [ ],
+            "selectedRelationships" : [ "output stream" ],
+            "source" : {
+              "comments" : "",
+              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+              "id" : "c0dfc84d-8173-388b-af2c-3d50a74a56cb",
+              "name" : "ExecuteStreamCommand",
+              "type" : "PROCESSOR"
+            },
+            "zIndex" : 0
+          }, {
+            "backPressureDataSizeThreshold" : "1 GB",
+            "backPressureObjectThreshold" : 10000,
+            "bends" : [ {
               "x" : 432.0,
               "y" : -528.0
             }, {
@@ -3911,30 +4426,36 @@
           }, {
             "backPressureDataSizeThreshold" : "1 GB",
             "backPressureObjectThreshold" : 10000,
-            "bends" : [ ],
+            "bends" : [ {
+              "x" : 4365.0,
+              "y" : -449.0
+            }, {
+              "x" : 4365.0,
+              "y" : -399.0
+            } ],
             "componentType" : "CONNECTION",
             "destination" : {
               "comments" : "",
               "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
-              "id" : "be161dde-013d-3f29-b741-80fbbc357934",
-              "name" : "UpdateAttribute",
+              "id" : "1c14f8f5-9d04-312c-a9a9-2ad5debea79d",
+              "name" : "FetchFile",
               "type" : "PROCESSOR"
             },
             "flowFileExpiration" : "0 sec",
             "groupIdentifier" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
-            "identifier" : "e71c558d-d6e9-3e9c-bc9c-c6caa969b608",
+            "identifier" : "c1c55647-8162-3bba-9f80-b467fc24f62a",
             "labelIndex" : 1,
             "loadBalanceCompression" : "DO_NOT_COMPRESS",
             "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
             "name" : "",
             "partitioningAttribute" : "",
             "prioritizers" : [ ],
-            "selectedRelationships" : [ "matched" ],
+            "selectedRelationships" : [ "failure" ],
             "source" : {
               "comments" : "",
               "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
-              "id" : "2224ef31-f7ad-336d-9edb-11f93d9b4982",
-              "name" : "EvaluateXPath",
+              "id" : "1c14f8f5-9d04-312c-a9a9-2ad5debea79d",
+              "name" : "FetchFile",
               "type" : "PROCESSOR"
             },
             "zIndex" : 0
@@ -3946,8 +4467,8 @@
             "destination" : {
               "comments" : "",
               "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
-              "id" : "ae4416ce-e09b-3fb1-ad91-56f55286c349",
-              "name" : "Submit Spark Job",
+              "id" : "cae4adf9-44b3-30dd-8ce1-76749aa87e59",
+              "name" : "Check all files are in HDFS",
               "type" : "PROCESSOR"
             },
             "flowFileExpiration" : "0 sec",
@@ -3989,7 +4510,7 @@
             "flowFileExpiration" : "0 sec",
             "groupIdentifier" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
             "identifier" : "fd557324-38a0-3b6f-baf0-476ae4a041a2",
-            "labelIndex" : 1,
+            "labelIndex" : 0,
             "loadBalanceCompression" : "DO_NOT_COMPRESS",
             "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
             "name" : "",
@@ -4008,18 +4529,18 @@
             "backPressureDataSizeThreshold" : "1 GB",
             "backPressureObjectThreshold" : 10000,
             "bends" : [ {
-              "x" : 1648.0,
-              "y" : -304.0
+              "x" : 1816.0,
+              "y" : -576.0
             }, {
-              "x" : 1648.0,
-              "y" : -304.0
+              "x" : 1816.0,
+              "y" : -576.0
             } ],
             "componentType" : "CONNECTION",
             "destination" : {
               "comments" : "",
               "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
-              "id" : "4e717001-cee2-3710-a583-180a67b7c62d",
-              "name" : "Could not find begin time ",
+              "id" : "c1d9b8ce-ada6-3ca1-94ef-d6127b5856dd",
+              "name" : "If Begin Time Not Found",
               "type" : "PROCESSOR"
             },
             "flowFileExpiration" : "0 sec",
@@ -4037,6 +4558,66 @@
               "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
               "id" : "2224ef31-f7ad-336d-9edb-11f93d9b4982",
               "name" : "EvaluateXPath",
+              "type" : "PROCESSOR"
+            },
+            "zIndex" : 0
+          }, {
+            "backPressureDataSizeThreshold" : "1 GB",
+            "backPressureObjectThreshold" : 10000,
+            "bends" : [ ],
+            "componentType" : "CONNECTION",
+            "destination" : {
+              "comments" : "",
+              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+              "id" : "ae4416ce-e09b-3fb1-ad91-56f55286c349",
+              "name" : "Submit Spark Job",
+              "type" : "PROCESSOR"
+            },
+            "flowFileExpiration" : "0 sec",
+            "groupIdentifier" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+            "identifier" : "54d94c54-3730-3858-aaab-4e1a8f3750ff",
+            "labelIndex" : 1,
+            "loadBalanceCompression" : "DO_NOT_COMPRESS",
+            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
+            "name" : "",
+            "partitioningAttribute" : "",
+            "prioritizers" : [ ],
+            "selectedRelationships" : [ "success" ],
+            "source" : {
+              "comments" : "",
+              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+              "id" : "6ed08fa1-206f-310f-be64-5340ecb71acb",
+              "name" : "UpdateAttribute",
+              "type" : "PROCESSOR"
+            },
+            "zIndex" : 0
+          }, {
+            "backPressureDataSizeThreshold" : "1 GB",
+            "backPressureObjectThreshold" : 10000,
+            "bends" : [ ],
+            "componentType" : "CONNECTION",
+            "destination" : {
+              "comments" : "",
+              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+              "id" : "7d012da2-6dcd-3774-a0ca-99ccb9e73cad",
+              "name" : "SplitText",
+              "type" : "PROCESSOR"
+            },
+            "flowFileExpiration" : "0 sec",
+            "groupIdentifier" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+            "identifier" : "7c37d5c0-d8da-319c-b789-84fbd8055db9",
+            "labelIndex" : 1,
+            "loadBalanceCompression" : "DO_NOT_COMPRESS",
+            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
+            "name" : "",
+            "partitioningAttribute" : "",
+            "prioritizers" : [ ],
+            "selectedRelationships" : [ "success" ],
+            "source" : {
+              "comments" : "",
+              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+              "id" : "1c14f8f5-9d04-312c-a9a9-2ad5debea79d",
+              "name" : "FetchFile",
               "type" : "PROCESSOR"
             },
             "zIndex" : 0
@@ -4073,42 +4654,6 @@
           }, {
             "backPressureDataSizeThreshold" : "1 GB",
             "backPressureObjectThreshold" : 10000,
-            "bends" : [ {
-              "x" : 2491.568115234375,
-              "y" : 60.384613037109375
-            }, {
-              "x" : 2491.568115234375,
-              "y" : 116.38461303710938
-            } ],
-            "componentType" : "CONNECTION",
-            "destination" : {
-              "comments" : "",
-              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
-              "id" : "e7747ea9-000b-3447-bfeb-3e759fcf20f0",
-              "name" : "Send Put HDFS failed Email",
-              "type" : "PROCESSOR"
-            },
-            "flowFileExpiration" : "0 sec",
-            "groupIdentifier" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
-            "identifier" : "9ac6bd6c-939e-3cd9-9e55-bfcc9e154cda",
-            "labelIndex" : 1,
-            "loadBalanceCompression" : "DO_NOT_COMPRESS",
-            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
-            "name" : "",
-            "partitioningAttribute" : "",
-            "prioritizers" : [ ],
-            "selectedRelationships" : [ "nonzero status" ],
-            "source" : {
-              "comments" : "",
-              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
-              "id" : "e7747ea9-000b-3447-bfeb-3e759fcf20f0",
-              "name" : "Send Put HDFS failed Email",
-              "type" : "PROCESSOR"
-            },
-            "zIndex" : 0
-          }, {
-            "backPressureDataSizeThreshold" : "1 GB",
-            "backPressureObjectThreshold" : 10000,
             "bends" : [ ],
             "componentType" : "CONNECTION",
             "destination" : {
@@ -4139,13 +4684,76 @@
           }, {
             "backPressureDataSizeThreshold" : "1 GB",
             "backPressureObjectThreshold" : 10000,
+            "bends" : [ {
+              "x" : 3136.0,
+              "y" : -680.0
+            } ],
+            "componentType" : "CONNECTION",
+            "destination" : {
+              "comments" : "",
+              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+              "id" : "c0dfc84d-8173-388b-af2c-3d50a74a56cb",
+              "name" : "ExecuteStreamCommand",
+              "type" : "PROCESSOR"
+            },
+            "flowFileExpiration" : "0 sec",
+            "groupIdentifier" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+            "identifier" : "3cce8ac3-589c-3e77-9b5b-d582b8dd5ae7",
+            "labelIndex" : 1,
+            "loadBalanceCompression" : "DO_NOT_COMPRESS",
+            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
+            "name" : "",
+            "partitioningAttribute" : "",
+            "prioritizers" : [ ],
+            "selectedRelationships" : [ "if_all_files_in_HDFS" ],
+            "source" : {
+              "comments" : "",
+              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+              "id" : "cae4adf9-44b3-30dd-8ce1-76749aa87e59",
+              "name" : "Check all files are in HDFS",
+              "type" : "PROCESSOR"
+            },
+            "zIndex" : 0
+          }, {
+            "backPressureDataSizeThreshold" : "1 GB",
+            "backPressureObjectThreshold" : 10000,
             "bends" : [ ],
             "componentType" : "CONNECTION",
             "destination" : {
-              "comments" : "Write XML file to Hadoop Distributed File System (HDFS) with gzip compression",
+              "comments" : "",
               "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
-              "id" : "d24bf3c4-df0f-36a1-b170-60922edf7621",
-              "name" : "Put File to HDFS without Compression",
+              "id" : "be161dde-013d-3f29-b741-80fbbc357934",
+              "name" : "UpdateAttribute",
+              "type" : "PROCESSOR"
+            },
+            "flowFileExpiration" : "0 sec",
+            "groupIdentifier" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+            "identifier" : "ada8f62a-6f93-3001-a0b6-3a631c78f3fb",
+            "labelIndex" : 1,
+            "loadBalanceCompression" : "DO_NOT_COMPRESS",
+            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
+            "name" : "",
+            "partitioningAttribute" : "",
+            "prioritizers" : [ ],
+            "selectedRelationships" : [ "success" ],
+            "source" : {
+              "comments" : "",
+              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+              "id" : "c1d9b8ce-ada6-3ca1-94ef-d6127b5856dd",
+              "name" : "If Begin Time Not Found",
+              "type" : "PROCESSOR"
+            },
+            "zIndex" : 0
+          }, {
+            "backPressureDataSizeThreshold" : "1 GB",
+            "backPressureObjectThreshold" : 10000,
+            "bends" : [ ],
+            "componentType" : "CONNECTION",
+            "destination" : {
+              "comments" : "",
+              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+              "id" : "930201cc-8d80-354f-b23d-ff44d54c1603",
+              "name" : "LogAttribute",
               "type" : "PROCESSOR"
             },
             "flowFileExpiration" : "0 sec",
@@ -4163,42 +4771,6 @@
               "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
               "id" : "4700307c-0313-3aac-8b9f-a40a8936ac47",
               "name" : "RouteOnAttribute",
-              "type" : "PROCESSOR"
-            },
-            "zIndex" : 0
-          }, {
-            "backPressureDataSizeThreshold" : "1 GB",
-            "backPressureObjectThreshold" : 10000,
-            "bends" : [ {
-              "x" : 1376.0,
-              "y" : -304.0
-            }, {
-              "x" : 1376.0,
-              "y" : -304.0
-            } ],
-            "componentType" : "CONNECTION",
-            "destination" : {
-              "comments" : "",
-              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
-              "id" : "4e717001-cee2-3710-a583-180a67b7c62d",
-              "name" : "Could not find begin time ",
-              "type" : "PROCESSOR"
-            },
-            "flowFileExpiration" : "0 sec",
-            "groupIdentifier" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
-            "identifier" : "10ba24c8-6c9e-372c-afae-274fa936be97",
-            "labelIndex" : 1,
-            "loadBalanceCompression" : "DO_NOT_COMPRESS",
-            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
-            "name" : "",
-            "partitioningAttribute" : "",
-            "prioritizers" : [ ],
-            "selectedRelationships" : [ "failure" ],
-            "source" : {
-              "comments" : "",
-              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
-              "id" : "2224ef31-f7ad-336d-9edb-11f93d9b4982",
-              "name" : "EvaluateXPath",
               "type" : "PROCESSOR"
             },
             "zIndex" : 0
@@ -4224,36 +4796,6 @@
             "partitioningAttribute" : "",
             "prioritizers" : [ ],
             "selectedRelationships" : [ "if Zip" ],
-            "source" : {
-              "comments" : "Routes the flow based on the extension of the file",
-              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
-              "id" : "b0e2c600-ebdd-3cdc-8ce3-0f70fd363d2a",
-              "name" : "Route On File Extension",
-              "type" : "PROCESSOR"
-            },
-            "zIndex" : 0
-          }, {
-            "backPressureDataSizeThreshold" : "1 GB",
-            "backPressureObjectThreshold" : 10000,
-            "bends" : [ ],
-            "componentType" : "CONNECTION",
-            "destination" : {
-              "comments" : "Decompresses the contents of the tar file",
-              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
-              "id" : "a176085b-2444-3674-84bf-058c05293fad",
-              "name" : "Decompress Gzip File",
-              "type" : "PROCESSOR"
-            },
-            "flowFileExpiration" : "0 sec",
-            "groupIdentifier" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
-            "identifier" : "3df8d806-5009-3080-a8f4-d5f579717ad3",
-            "labelIndex" : 1,
-            "loadBalanceCompression" : "DO_NOT_COMPRESS",
-            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
-            "name" : "",
-            "partitioningAttribute" : "",
-            "prioritizers" : [ ],
-            "selectedRelationships" : [ "if Gzip" ],
             "source" : {
               "comments" : "Routes the flow based on the extension of the file",
               "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
@@ -4296,95 +4838,35 @@
             "backPressureDataSizeThreshold" : "1 GB",
             "backPressureObjectThreshold" : 10000,
             "bends" : [ {
-              "x" : 360.0,
-              "y" : -440.0
+              "x" : 4365.0,
+              "y" : -449.0
             }, {
-              "x" : 360.0,
-              "y" : -440.0
+              "x" : 4365.0,
+              "y" : -399.0
             } ],
             "componentType" : "CONNECTION",
             "destination" : {
-              "comments" : "Routes the flow based on the extension of the file",
+              "comments" : "",
               "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
-              "id" : "b0e2c600-ebdd-3cdc-8ce3-0f70fd363d2a",
-              "name" : "Route On File Extension",
+              "id" : "1c14f8f5-9d04-312c-a9a9-2ad5debea79d",
+              "name" : "FetchFile",
               "type" : "PROCESSOR"
             },
             "flowFileExpiration" : "0 sec",
             "groupIdentifier" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
-            "identifier" : "10d80b99-6bc1-3e4f-8ef5-7ba25e0c5d4f",
+            "identifier" : "0f7a250a-77f6-378a-834c-cf7041fb8279",
             "labelIndex" : 1,
             "loadBalanceCompression" : "DO_NOT_COMPRESS",
             "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
             "name" : "",
             "partitioningAttribute" : "",
             "prioritizers" : [ ],
-            "selectedRelationships" : [ "success" ],
-            "source" : {
-              "comments" : "Unpack the zip file an send it back to Route of File Extension so the file inside the zip can be routed accordingly.",
-              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
-              "id" : "f7843c4c-927e-3c74-805d-10ca8ebffb54",
-              "name" : "Unzip File",
-              "type" : "PROCESSOR"
-            },
-            "zIndex" : 0
-          }, {
-            "backPressureDataSizeThreshold" : "1 GB",
-            "backPressureObjectThreshold" : 10000,
-            "bends" : [ ],
-            "componentType" : "CONNECTION",
-            "destination" : {
-              "comments" : "",
-              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
-              "id" : "4700307c-0313-3aac-8b9f-a40a8936ac47",
-              "name" : "RouteOnAttribute",
-              "type" : "PROCESSOR"
-            },
-            "flowFileExpiration" : "0 sec",
-            "groupIdentifier" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
-            "identifier" : "b0abef09-5eee-3557-b341-980dbea724b1",
-            "labelIndex" : 1,
-            "loadBalanceCompression" : "DO_NOT_COMPRESS",
-            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
-            "name" : "",
-            "partitioningAttribute" : "",
-            "prioritizers" : [ ],
-            "selectedRelationships" : [ "" ],
+            "selectedRelationships" : [ "not.found" ],
             "source" : {
               "comments" : "",
               "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
-              "id" : "e6f1175d-34bf-31ea-aa1a-f71ea01e6d7f",
-              "name" : "Input Flowfiles",
-              "type" : "INPUT_PORT"
-            },
-            "zIndex" : 0
-          }, {
-            "backPressureDataSizeThreshold" : "1 GB",
-            "backPressureObjectThreshold" : 10000,
-            "bends" : [ ],
-            "componentType" : "CONNECTION",
-            "destination" : {
-              "comments" : "",
-              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
-              "id" : "e7747ea9-000b-3447-bfeb-3e759fcf20f0",
-              "name" : "Send Put HDFS failed Email",
-              "type" : "PROCESSOR"
-            },
-            "flowFileExpiration" : "0 sec",
-            "groupIdentifier" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
-            "identifier" : "a57cc1a2-9995-31cf-8925-e0715a3b7897",
-            "labelIndex" : 1,
-            "loadBalanceCompression" : "DO_NOT_COMPRESS",
-            "loadBalanceStrategy" : "DO_NOT_LOAD_BALANCE",
-            "name" : "",
-            "partitioningAttribute" : "",
-            "prioritizers" : [ ],
-            "selectedRelationships" : [ "failure" ],
-            "source" : {
-              "comments" : "Write XML file to Hadoop Distributed File System (HDFS) with gzip compression",
-              "groupId" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
-              "id" : "d24bf3c4-df0f-36a1-b170-60922edf7621",
-              "name" : "Put File to HDFS without Compression",
+              "id" : "1c14f8f5-9d04-312c-a9a9-2ad5debea79d",
+              "name" : "FetchFile",
               "type" : "PROCESSOR"
             },
             "zIndex" : 0
@@ -4421,6 +4903,136 @@
           },
           "processGroups" : [ ],
           "processors" : [ {
+            "autoTerminatedRelationships" : [ "original" ],
+            "bulletinLevel" : "WARN",
+            "bundle" : {
+              "artifact" : "nifi-standard-nar",
+              "group" : "org.apache.nifi",
+              "version" : "1.14.0"
+            },
+            "comments" : "",
+            "componentType" : "PROCESSOR",
+            "concurrentlySchedulableTaskCount" : 1,
+            "executionNode" : "ALL",
+            "groupIdentifier" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+            "identifier" : "c0dfc84d-8173-388b-af2c-3d50a74a56cb",
+            "name" : "ExecuteStreamCommand",
+            "penaltyDuration" : "30 sec",
+            "position" : {
+              "x" : 3280.0,
+              "y" : -744.0
+            },
+            "properties" : {
+              "argumentsStrategy" : "Command Arguments Property",
+              "Max Attribute Length" : "256",
+              "Command Path" : "${script_dir}/${hdfs_list_dir_script}",
+              "Argument Delimiter" : ";",
+              "Ignore STDIN" : "true",
+              "Command Arguments" : "${absolute.hdfs.path:substringBeforeLast('/')}"
+            },
+            "propertyDescriptors" : {
+              "argumentsStrategy" : {
+                "displayName" : "Command Arguments Strategy",
+                "identifiesControllerService" : false,
+                "name" : "argumentsStrategy",
+                "sensitive" : false
+              },
+              "Max Attribute Length" : {
+                "displayName" : "Max Attribute Length",
+                "identifiesControllerService" : false,
+                "name" : "Max Attribute Length",
+                "sensitive" : false
+              },
+              "Command Path" : {
+                "displayName" : "Command Path",
+                "identifiesControllerService" : false,
+                "name" : "Command Path",
+                "sensitive" : false
+              },
+              "Working Directory" : {
+                "displayName" : "Working Directory",
+                "identifiesControllerService" : false,
+                "name" : "Working Directory",
+                "sensitive" : false
+              },
+              "Output Destination Attribute" : {
+                "displayName" : "Output Destination Attribute",
+                "identifiesControllerService" : false,
+                "name" : "Output Destination Attribute",
+                "sensitive" : false
+              },
+              "Argument Delimiter" : {
+                "displayName" : "Argument Delimiter",
+                "identifiesControllerService" : false,
+                "name" : "Argument Delimiter",
+                "sensitive" : false
+              },
+              "Ignore STDIN" : {
+                "displayName" : "Ignore STDIN",
+                "identifiesControllerService" : false,
+                "name" : "Ignore STDIN",
+                "sensitive" : false
+              },
+              "Command Arguments" : {
+                "displayName" : "Command Arguments",
+                "identifiesControllerService" : false,
+                "name" : "Command Arguments",
+                "sensitive" : false
+              }
+            },
+            "runDurationMillis" : 0,
+            "scheduledState" : "ENABLED",
+            "schedulingPeriod" : "0 sec",
+            "schedulingStrategy" : "TIMER_DRIVEN",
+            "style" : { },
+            "type" : "org.apache.nifi.processors.standard.ExecuteStreamCommand",
+            "yieldDuration" : "1 sec"
+          }, {
+            "autoTerminatedRelationships" : [ "unmatched" ],
+            "bulletinLevel" : "WARN",
+            "bundle" : {
+              "artifact" : "nifi-standard-nar",
+              "group" : "org.apache.nifi",
+              "version" : "1.14.0"
+            },
+            "comments" : "",
+            "componentType" : "PROCESSOR",
+            "concurrentlySchedulableTaskCount" : 1,
+            "executionNode" : "ALL",
+            "groupIdentifier" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+            "identifier" : "cae4adf9-44b3-30dd-8ce1-76749aa87e59",
+            "name" : "Check all files are in HDFS",
+            "penaltyDuration" : "30 sec",
+            "position" : {
+              "x" : 2664.0,
+              "y" : -744.0
+            },
+            "properties" : {
+              "Routing Strategy" : "Route to Property name",
+              "if_all_files_in_HDFS" : "${fragment.count:equals( ${fragment.index} )}"
+            },
+            "propertyDescriptors" : {
+              "Routing Strategy" : {
+                "displayName" : "Routing Strategy",
+                "identifiesControllerService" : false,
+                "name" : "Routing Strategy",
+                "sensitive" : false
+              },
+              "if_all_files_in_HDFS" : {
+                "displayName" : "if_all_files_in_HDFS",
+                "identifiesControllerService" : false,
+                "name" : "if_all_files_in_HDFS",
+                "sensitive" : false
+              }
+            },
+            "runDurationMillis" : 0,
+            "scheduledState" : "ENABLED",
+            "schedulingPeriod" : "0 sec",
+            "schedulingStrategy" : "TIMER_DRIVEN",
+            "style" : { },
+            "type" : "org.apache.nifi.processors.standard.RouteOnAttribute",
+            "yieldDuration" : "1 sec"
+          }, {
             "autoTerminatedRelationships" : [ "output stream", "original" ],
             "bulletinLevel" : "WARN",
             "bundle" : {
@@ -4437,8 +5049,8 @@
             "name" : "Send Spark Job Failed Email",
             "penaltyDuration" : "1 sec",
             "position" : {
-              "x" : 2664.0,
-              "y" : -248.0
+              "x" : 3904.0,
+              "y" : 8.0
             },
             "properties" : {
               "argumentsStrategy" : "Command Arguments Property",
@@ -4704,6 +5316,221 @@
             "autoTerminatedRelationships" : [ ],
             "bulletinLevel" : "WARN",
             "bundle" : {
+              "artifact" : "nifi-standard-nar",
+              "group" : "org.apache.nifi",
+              "version" : "1.14.0"
+            },
+            "comments" : "",
+            "componentType" : "PROCESSOR",
+            "concurrentlySchedulableTaskCount" : 1,
+            "executionNode" : "ALL",
+            "groupIdentifier" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+            "identifier" : "1c14f8f5-9d04-312c-a9a9-2ad5debea79d",
+            "name" : "FetchFile",
+            "penaltyDuration" : "30 sec",
+            "position" : {
+              "x" : 3896.0,
+              "y" : -488.0
+            },
+            "properties" : {
+              "Move Conflict Strategy" : "Rename",
+              "Log level when file not found" : "ERROR",
+              "Log level when permission denied" : "ERROR",
+              "File to Fetch" : "${hdfs_list_dir_file}",
+              "Completion Strategy" : "None"
+            },
+            "propertyDescriptors" : {
+              "Move Conflict Strategy" : {
+                "displayName" : "Move Conflict Strategy",
+                "identifiesControllerService" : false,
+                "name" : "Move Conflict Strategy",
+                "sensitive" : false
+              },
+              "Log level when file not found" : {
+                "displayName" : "Log level when file not found",
+                "identifiesControllerService" : false,
+                "name" : "Log level when file not found",
+                "sensitive" : false
+              },
+              "Move Destination Directory" : {
+                "displayName" : "Move Destination Directory",
+                "identifiesControllerService" : false,
+                "name" : "Move Destination Directory",
+                "sensitive" : false
+              },
+              "Log level when permission denied" : {
+                "displayName" : "Log level when permission denied",
+                "identifiesControllerService" : false,
+                "name" : "Log level when permission denied",
+                "sensitive" : false
+              },
+              "File to Fetch" : {
+                "displayName" : "File to Fetch",
+                "identifiesControllerService" : false,
+                "name" : "File to Fetch",
+                "sensitive" : false
+              },
+              "Completion Strategy" : {
+                "displayName" : "Completion Strategy",
+                "identifiesControllerService" : false,
+                "name" : "Completion Strategy",
+                "sensitive" : false
+              }
+            },
+            "runDurationMillis" : 0,
+            "scheduledState" : "ENABLED",
+            "schedulingPeriod" : "0 sec",
+            "schedulingStrategy" : "TIMER_DRIVEN",
+            "style" : { },
+            "type" : "org.apache.nifi.processors.standard.FetchFile",
+            "yieldDuration" : "1 sec"
+          }, {
+            "autoTerminatedRelationships" : [ "unmatched" ],
+            "bulletinLevel" : "WARN",
+            "bundle" : {
+              "artifact" : "nifi-standard-nar",
+              "group" : "org.apache.nifi",
+              "version" : "1.14.0"
+            },
+            "comments" : "",
+            "componentType" : "PROCESSOR",
+            "concurrentlySchedulableTaskCount" : 1,
+            "executionNode" : "ALL",
+            "groupIdentifier" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+            "identifier" : "30b577f0-0dec-330c-ab3b-6291dff7a223",
+            "name" : "ExtractText",
+            "penaltyDuration" : "30 sec",
+            "position" : {
+              "x" : 2672.0,
+              "y" : -232.0
+            },
+            "properties" : {
+              "Enable Unicode Predefined Character Classes" : "false",
+              "Permit Whitespace and Comments in Pattern" : "false",
+              "Enable Unicode-aware Case Folding" : "false",
+              "Enable DOTALL Mode" : "false",
+              "Enable Unix Lines Mode" : "false",
+              "extract-text-enable-named-groups" : "false",
+              "hdfs.dir" : "(.*)",
+              "Maximum Buffer Size" : "1 MB",
+              "Enable Canonical Equivalence" : "false",
+              "Enable Case-insensitive Matching" : "false",
+              "Enable Multiline Mode" : "false",
+              "Maximum Capture Group Length" : "1024",
+              "Enable Literal Parsing of the Pattern" : "false",
+              "Character Set" : "UTF-8",
+              "Include Capture Group 0" : "false",
+              "extract-text-enable-repeating-capture-group" : "false"
+            },
+            "propertyDescriptors" : {
+              "Enable Unicode Predefined Character Classes" : {
+                "displayName" : "Enable Unicode Predefined Character Classes",
+                "identifiesControllerService" : false,
+                "name" : "Enable Unicode Predefined Character Classes",
+                "sensitive" : false
+              },
+              "Permit Whitespace and Comments in Pattern" : {
+                "displayName" : "Permit Whitespace and Comments in Pattern",
+                "identifiesControllerService" : false,
+                "name" : "Permit Whitespace and Comments in Pattern",
+                "sensitive" : false
+              },
+              "Enable Unicode-aware Case Folding" : {
+                "displayName" : "Enable Unicode-aware Case Folding",
+                "identifiesControllerService" : false,
+                "name" : "Enable Unicode-aware Case Folding",
+                "sensitive" : false
+              },
+              "Enable DOTALL Mode" : {
+                "displayName" : "Enable DOTALL Mode",
+                "identifiesControllerService" : false,
+                "name" : "Enable DOTALL Mode",
+                "sensitive" : false
+              },
+              "Enable Unix Lines Mode" : {
+                "displayName" : "Enable Unix Lines Mode",
+                "identifiesControllerService" : false,
+                "name" : "Enable Unix Lines Mode",
+                "sensitive" : false
+              },
+              "extract-text-enable-named-groups" : {
+                "displayName" : "Enable named group support",
+                "identifiesControllerService" : false,
+                "name" : "extract-text-enable-named-groups",
+                "sensitive" : false
+              },
+              "hdfs.dir" : {
+                "displayName" : "hdfs.dir",
+                "identifiesControllerService" : false,
+                "name" : "hdfs.dir",
+                "sensitive" : false
+              },
+              "Maximum Buffer Size" : {
+                "displayName" : "Maximum Buffer Size",
+                "identifiesControllerService" : false,
+                "name" : "Maximum Buffer Size",
+                "sensitive" : false
+              },
+              "Enable Canonical Equivalence" : {
+                "displayName" : "Enable Canonical Equivalence",
+                "identifiesControllerService" : false,
+                "name" : "Enable Canonical Equivalence",
+                "sensitive" : false
+              },
+              "Enable Case-insensitive Matching" : {
+                "displayName" : "Enable Case-insensitive Matching",
+                "identifiesControllerService" : false,
+                "name" : "Enable Case-insensitive Matching",
+                "sensitive" : false
+              },
+              "Enable Multiline Mode" : {
+                "displayName" : "Enable Multiline Mode",
+                "identifiesControllerService" : false,
+                "name" : "Enable Multiline Mode",
+                "sensitive" : false
+              },
+              "Maximum Capture Group Length" : {
+                "displayName" : "Maximum Capture Group Length",
+                "identifiesControllerService" : false,
+                "name" : "Maximum Capture Group Length",
+                "sensitive" : false
+              },
+              "Enable Literal Parsing of the Pattern" : {
+                "displayName" : "Enable Literal Parsing of the Pattern",
+                "identifiesControllerService" : false,
+                "name" : "Enable Literal Parsing of the Pattern",
+                "sensitive" : false
+              },
+              "Character Set" : {
+                "displayName" : "Character Set",
+                "identifiesControllerService" : false,
+                "name" : "Character Set",
+                "sensitive" : false
+              },
+              "Include Capture Group 0" : {
+                "displayName" : "Include Capture Group 0",
+                "identifiesControllerService" : false,
+                "name" : "Include Capture Group 0",
+                "sensitive" : false
+              },
+              "extract-text-enable-repeating-capture-group" : {
+                "displayName" : "Enable repeating capture group",
+                "identifiesControllerService" : false,
+                "name" : "extract-text-enable-repeating-capture-group",
+                "sensitive" : false
+              }
+            },
+            "runDurationMillis" : 0,
+            "scheduledState" : "ENABLED",
+            "schedulingPeriod" : "0 sec",
+            "schedulingStrategy" : "TIMER_DRIVEN",
+            "style" : { },
+            "type" : "org.apache.nifi.processors.standard.ExtractText",
+            "yieldDuration" : "1 sec"
+          }, {
+            "autoTerminatedRelationships" : [ ],
+            "bulletinLevel" : "WARN",
+            "bundle" : {
               "artifact" : "nifi-hadoop-nar",
               "group" : "org.apache.nifi",
               "version" : "1.14.0"
@@ -4725,7 +5552,7 @@
               "Compression codec" : "NONE",
               "Ignore Locality" : "false",
               "Kerberos Relogin Period" : "4 hours",
-              "Directory" : "/gsb/${dateTime}/${filepath:substringAfter('gsb/')}",
+              "Directory" : "/gsb/${filepath:substringAfter('gsb/')}/${dateTime}",
               "Conflict Resolution Strategy" : "replace"
             },
             "propertyDescriptors" : {
@@ -4866,12 +5693,95 @@
             "concurrentlySchedulableTaskCount" : 1,
             "executionNode" : "ALL",
             "groupIdentifier" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+            "identifier" : "d906f2ec-fe0a-353f-8911-c92bccfbdebf",
+            "name" : "LogAttribute",
+            "penaltyDuration" : "30 sec",
+            "position" : {
+              "x" : 3896.0,
+              "y" : -744.0
+            },
+            "properties" : {
+              "character-set" : "UTF-8",
+              "Log Level" : "info",
+              "attributes-to-log-regex" : ".*",
+              "Log Payload" : "true"
+            },
+            "propertyDescriptors" : {
+              "Log prefix" : {
+                "displayName" : "Log prefix",
+                "identifiesControllerService" : false,
+                "name" : "Log prefix",
+                "sensitive" : false
+              },
+              "character-set" : {
+                "displayName" : "Character Set",
+                "identifiesControllerService" : false,
+                "name" : "character-set",
+                "sensitive" : false
+              },
+              "Log Level" : {
+                "displayName" : "Log Level",
+                "identifiesControllerService" : false,
+                "name" : "Log Level",
+                "sensitive" : false
+              },
+              "attributes-to-ignore-regex" : {
+                "displayName" : "Attributes to Ignore by Regular Expression",
+                "identifiesControllerService" : false,
+                "name" : "attributes-to-ignore-regex",
+                "sensitive" : false
+              },
+              "Attributes to Ignore" : {
+                "displayName" : "Attributes to Ignore",
+                "identifiesControllerService" : false,
+                "name" : "Attributes to Ignore",
+                "sensitive" : false
+              },
+              "Attributes to Log" : {
+                "displayName" : "Attributes to Log",
+                "identifiesControllerService" : false,
+                "name" : "Attributes to Log",
+                "sensitive" : false
+              },
+              "attributes-to-log-regex" : {
+                "displayName" : "Attributes to Log by Regular Expression",
+                "identifiesControllerService" : false,
+                "name" : "attributes-to-log-regex",
+                "sensitive" : false
+              },
+              "Log Payload" : {
+                "displayName" : "Log Payload",
+                "identifiesControllerService" : false,
+                "name" : "Log Payload",
+                "sensitive" : false
+              }
+            },
+            "runDurationMillis" : 0,
+            "scheduledState" : "ENABLED",
+            "schedulingPeriod" : "0 sec",
+            "schedulingStrategy" : "TIMER_DRIVEN",
+            "style" : { },
+            "type" : "org.apache.nifi.processors.standard.LogAttribute",
+            "yieldDuration" : "1 sec"
+          }, {
+            "autoTerminatedRelationships" : [ ],
+            "bulletinLevel" : "WARN",
+            "bundle" : {
+              "artifact" : "nifi-standard-nar",
+              "group" : "org.apache.nifi",
+              "version" : "1.14.0"
+            },
+            "comments" : "",
+            "componentType" : "PROCESSOR",
+            "concurrentlySchedulableTaskCount" : 1,
+            "executionNode" : "ALL",
+            "groupIdentifier" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
             "identifier" : "3dbf4c59-9ba1-39e6-9b02-98e8cfbc73c3",
             "name" : "LogAttribute",
             "penaltyDuration" : "30 sec",
             "position" : {
-              "x" : 3280.0,
-              "y" : -488.0
+              "x" : 4520.0,
+              "y" : -232.0
             },
             "properties" : {
               "character-set" : "UTF-8",
@@ -5062,6 +5972,179 @@
             "type" : "org.apache.nifi.processors.standard.CompressContent",
             "yieldDuration" : "1 sec"
           }, {
+            "autoTerminatedRelationships" : [ "unmatched" ],
+            "bulletinLevel" : "WARN",
+            "bundle" : {
+              "artifact" : "nifi-standard-nar",
+              "group" : "org.apache.nifi",
+              "version" : "1.14.0"
+            },
+            "comments" : "",
+            "componentType" : "PROCESSOR",
+            "concurrentlySchedulableTaskCount" : 1,
+            "executionNode" : "ALL",
+            "groupIdentifier" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+            "identifier" : "6d9326ac-2399-3b64-8e7f-1cbbed97b664",
+            "name" : "Remove header file",
+            "penaltyDuration" : "30 sec",
+            "position" : {
+              "x" : 2672.0,
+              "y" : -488.0
+            },
+            "properties" : {
+              "Routing Strategy" : "Route to Property name",
+              "removed_header" : "${fragment.index:gt( 1 )}"
+            },
+            "propertyDescriptors" : {
+              "Routing Strategy" : {
+                "displayName" : "Routing Strategy",
+                "identifiesControllerService" : false,
+                "name" : "Routing Strategy",
+                "sensitive" : false
+              },
+              "removed_header" : {
+                "displayName" : "removed_header",
+                "identifiesControllerService" : false,
+                "name" : "removed_header",
+                "sensitive" : false
+              }
+            },
+            "runDurationMillis" : 0,
+            "scheduledState" : "ENABLED",
+            "schedulingPeriod" : "0 sec",
+            "schedulingStrategy" : "TIMER_DRIVEN",
+            "style" : { },
+            "type" : "org.apache.nifi.processors.standard.RouteOnAttribute",
+            "yieldDuration" : "1 sec"
+          }, {
+            "autoTerminatedRelationships" : [ ],
+            "bulletinLevel" : "WARN",
+            "bundle" : {
+              "artifact" : "nifi-update-attribute-nar",
+              "group" : "org.apache.nifi",
+              "version" : "1.14.0"
+            },
+            "comments" : "",
+            "componentType" : "PROCESSOR",
+            "concurrentlySchedulableTaskCount" : 1,
+            "executionNode" : "ALL",
+            "groupIdentifier" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+            "identifier" : "c1d9b8ce-ada6-3ca1-94ef-d6127b5856dd",
+            "name" : "If Begin Time Not Found",
+            "penaltyDuration" : "30 sec",
+            "position" : {
+              "x" : 2008.0,
+              "y" : -744.0
+            },
+            "properties" : {
+              "dateTime" : "0000-00-00T00:00:00+00:00",
+              "Store State" : "Do not store state",
+              "canonical-value-lookup-cache-size" : "100"
+            },
+            "propertyDescriptors" : {
+              "dateTime" : {
+                "displayName" : "dateTime",
+                "identifiesControllerService" : false,
+                "name" : "dateTime",
+                "sensitive" : false
+              },
+              "Delete Attributes Expression" : {
+                "displayName" : "Delete Attributes Expression",
+                "identifiesControllerService" : false,
+                "name" : "Delete Attributes Expression",
+                "sensitive" : false
+              },
+              "Store State" : {
+                "displayName" : "Store State",
+                "identifiesControllerService" : false,
+                "name" : "Store State",
+                "sensitive" : false
+              },
+              "canonical-value-lookup-cache-size" : {
+                "displayName" : "Cache Value Lookup Cache Size",
+                "identifiesControllerService" : false,
+                "name" : "canonical-value-lookup-cache-size",
+                "sensitive" : false
+              },
+              "Stateful Variables Initial Value" : {
+                "displayName" : "Stateful Variables Initial Value",
+                "identifiesControllerService" : false,
+                "name" : "Stateful Variables Initial Value",
+                "sensitive" : false
+              }
+            },
+            "runDurationMillis" : 0,
+            "scheduledState" : "ENABLED",
+            "schedulingPeriod" : "0 sec",
+            "schedulingStrategy" : "TIMER_DRIVEN",
+            "style" : { },
+            "type" : "org.apache.nifi.processors.attributes.UpdateAttribute",
+            "yieldDuration" : "1 sec"
+          }, {
+            "autoTerminatedRelationships" : [ ],
+            "bulletinLevel" : "WARN",
+            "bundle" : {
+              "artifact" : "nifi-update-attribute-nar",
+              "group" : "org.apache.nifi",
+              "version" : "1.14.0"
+            },
+            "comments" : "",
+            "componentType" : "PROCESSOR",
+            "concurrentlySchedulableTaskCount" : 1,
+            "executionNode" : "ALL",
+            "groupIdentifier" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+            "identifier" : "6ed08fa1-206f-310f-be64-5340ecb71acb",
+            "name" : "UpdateAttribute",
+            "penaltyDuration" : "30 sec",
+            "position" : {
+              "x" : 3296.0,
+              "y" : -232.0
+            },
+            "properties" : {
+              "Store State" : "Do not store state",
+              "canonical-value-lookup-cache-size" : "100",
+              "hdfs.dir" : "${hdfs.dir:substringAfter('/')}"
+            },
+            "propertyDescriptors" : {
+              "Delete Attributes Expression" : {
+                "displayName" : "Delete Attributes Expression",
+                "identifiesControllerService" : false,
+                "name" : "Delete Attributes Expression",
+                "sensitive" : false
+              },
+              "Store State" : {
+                "displayName" : "Store State",
+                "identifiesControllerService" : false,
+                "name" : "Store State",
+                "sensitive" : false
+              },
+              "canonical-value-lookup-cache-size" : {
+                "displayName" : "Cache Value Lookup Cache Size",
+                "identifiesControllerService" : false,
+                "name" : "canonical-value-lookup-cache-size",
+                "sensitive" : false
+              },
+              "hdfs.dir" : {
+                "displayName" : "hdfs.dir",
+                "identifiesControllerService" : false,
+                "name" : "hdfs.dir",
+                "sensitive" : false
+              },
+              "Stateful Variables Initial Value" : {
+                "displayName" : "Stateful Variables Initial Value",
+                "identifiesControllerService" : false,
+                "name" : "Stateful Variables Initial Value",
+                "sensitive" : false
+              }
+            },
+            "runDurationMillis" : 0,
+            "scheduledState" : "ENABLED",
+            "schedulingPeriod" : "0 sec",
+            "schedulingStrategy" : "TIMER_DRIVEN",
+            "style" : { },
+            "type" : "org.apache.nifi.processors.attributes.UpdateAttribute",
+            "yieldDuration" : "1 sec"
+          }, {
             "autoTerminatedRelationships" : [ ],
             "bulletinLevel" : "WARN",
             "bundle" : {
@@ -5074,18 +6157,18 @@
             "concurrentlySchedulableTaskCount" : 1,
             "executionNode" : "ALL",
             "groupIdentifier" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
-            "identifier" : "4e717001-cee2-3710-a583-180a67b7c62d",
-            "name" : "Could not find begin time ",
+            "identifier" : "930201cc-8d80-354f-b23d-ff44d54c1603",
+            "name" : "LogAttribute",
             "penaltyDuration" : "30 sec",
             "position" : {
-              "x" : 1352.0,
-              "y" : -248.0
+              "x" : 1992.0,
+              "y" : 368.0
             },
             "properties" : {
               "character-set" : "UTF-8",
               "Log Level" : "info",
               "attributes-to-log-regex" : ".*",
-              "Log Payload" : "false"
+              "Log Payload" : "true"
             },
             "propertyDescriptors" : {
               "Log prefix" : {
@@ -5222,8 +6305,8 @@
             "name" : "Submit Spark Job",
             "penaltyDuration" : "30 sec",
             "position" : {
-              "x" : 2664.0,
-              "y" : -488.0
+              "x" : 3904.0,
+              "y" : -232.0
             },
             "properties" : {
               "argumentsStrategy" : "Command Arguments Property",
@@ -5336,6 +6419,70 @@
             "type" : "org.apache.nifi.processors.standard.RouteOnAttribute",
             "yieldDuration" : "1 sec"
           }, {
+            "autoTerminatedRelationships" : [ "original", "failure" ],
+            "bulletinLevel" : "WARN",
+            "bundle" : {
+              "artifact" : "nifi-standard-nar",
+              "group" : "org.apache.nifi",
+              "version" : "1.14.0"
+            },
+            "comments" : "",
+            "componentType" : "PROCESSOR",
+            "concurrentlySchedulableTaskCount" : 1,
+            "executionNode" : "ALL",
+            "groupIdentifier" : "86d16b4d-c8a1-3e4c-8bc7-8d402e7a4484",
+            "identifier" : "7d012da2-6dcd-3774-a0ca-99ccb9e73cad",
+            "name" : "SplitText",
+            "penaltyDuration" : "30 sec",
+            "position" : {
+              "x" : 3288.0,
+              "y" : -488.0
+            },
+            "properties" : {
+              "Remove Trailing Newlines" : "true",
+              "Header Line Count" : "0",
+              "Line Split Count" : "1"
+            },
+            "propertyDescriptors" : {
+              "Remove Trailing Newlines" : {
+                "displayName" : "Remove Trailing Newlines",
+                "identifiesControllerService" : false,
+                "name" : "Remove Trailing Newlines",
+                "sensitive" : false
+              },
+              "Maximum Fragment Size" : {
+                "displayName" : "Maximum Fragment Size",
+                "identifiesControllerService" : false,
+                "name" : "Maximum Fragment Size",
+                "sensitive" : false
+              },
+              "Header Line Marker Characters" : {
+                "displayName" : "Header Line Marker Characters",
+                "identifiesControllerService" : false,
+                "name" : "Header Line Marker Characters",
+                "sensitive" : false
+              },
+              "Header Line Count" : {
+                "displayName" : "Header Line Count",
+                "identifiesControllerService" : false,
+                "name" : "Header Line Count",
+                "sensitive" : false
+              },
+              "Line Split Count" : {
+                "displayName" : "Line Split Count",
+                "identifiesControllerService" : false,
+                "name" : "Line Split Count",
+                "sensitive" : false
+              }
+            },
+            "runDurationMillis" : 0,
+            "scheduledState" : "ENABLED",
+            "schedulingPeriod" : "0 sec",
+            "schedulingStrategy" : "TIMER_DRIVEN",
+            "style" : { },
+            "type" : "org.apache.nifi.processors.standard.SplitText",
+            "yieldDuration" : "1 sec"
+          }, {
             "autoTerminatedRelationships" : [ "output stream", "original" ],
             "bulletinLevel" : "WARN",
             "bundle" : {
@@ -5423,6 +6570,8 @@
           } ],
           "remoteProcessGroups" : [ ],
           "variables" : {
+            "hdfs_list_dir_script" : "hdfs_list_dir.sh",
+            "hdfs_list_dir_file" : "/home/hdoop/part_time/gsb/path_list_dir/path_list_file.txt",
             "script_file" : "ericsson_script.sh"
           }
         } ],
@@ -5803,118 +6952,6 @@
             "group" : "org.apache.nifi",
             "version" : "1.14.0"
           },
-          "comments" : "",
-          "componentType" : "PROCESSOR",
-          "concurrentlySchedulableTaskCount" : 1,
-          "executionNode" : "PRIMARY",
-          "groupIdentifier" : "860623e7-2365-3eb3-88c8-18fcc4a3b08e",
-          "identifier" : "fdba33be-9a15-31b5-8aa2-285f56601454",
-          "name" : "GetFile",
-          "penaltyDuration" : "30 sec",
-          "position" : {
-            "x" : 216.0,
-            "y" : 696.0
-          },
-          "properties" : {
-            "Keep Source File" : "true",
-            "Minimum File Age" : "0 sec",
-            "Polling Interval" : "0 sec",
-            "Input Directory" : "/home/hdoop/gsb",
-            "Batch Size" : "20",
-            "Minimum File Size" : "0 B",
-            "Ignore Hidden Files" : "true",
-            "Recurse Subdirectories" : "true",
-            "File Filter" : "[^\\.].*"
-          },
-          "propertyDescriptors" : {
-            "Keep Source File" : {
-              "displayName" : "Keep Source File",
-              "identifiesControllerService" : false,
-              "name" : "Keep Source File",
-              "sensitive" : false
-            },
-            "Minimum File Age" : {
-              "displayName" : "Minimum File Age",
-              "identifiesControllerService" : false,
-              "name" : "Minimum File Age",
-              "sensitive" : false
-            },
-            "Polling Interval" : {
-              "displayName" : "Polling Interval",
-              "identifiesControllerService" : false,
-              "name" : "Polling Interval",
-              "sensitive" : false
-            },
-            "Input Directory" : {
-              "displayName" : "Input Directory",
-              "identifiesControllerService" : false,
-              "name" : "Input Directory",
-              "sensitive" : false
-            },
-            "Maximum File Age" : {
-              "displayName" : "Maximum File Age",
-              "identifiesControllerService" : false,
-              "name" : "Maximum File Age",
-              "sensitive" : false
-            },
-            "Batch Size" : {
-              "displayName" : "Batch Size",
-              "identifiesControllerService" : false,
-              "name" : "Batch Size",
-              "sensitive" : false
-            },
-            "Maximum File Size" : {
-              "displayName" : "Maximum File Size",
-              "identifiesControllerService" : false,
-              "name" : "Maximum File Size",
-              "sensitive" : false
-            },
-            "Minimum File Size" : {
-              "displayName" : "Minimum File Size",
-              "identifiesControllerService" : false,
-              "name" : "Minimum File Size",
-              "sensitive" : false
-            },
-            "Ignore Hidden Files" : {
-              "displayName" : "Ignore Hidden Files",
-              "identifiesControllerService" : false,
-              "name" : "Ignore Hidden Files",
-              "sensitive" : false
-            },
-            "Recurse Subdirectories" : {
-              "displayName" : "Recurse Subdirectories",
-              "identifiesControllerService" : false,
-              "name" : "Recurse Subdirectories",
-              "sensitive" : false
-            },
-            "File Filter" : {
-              "displayName" : "File Filter",
-              "identifiesControllerService" : false,
-              "name" : "File Filter",
-              "sensitive" : false
-            },
-            "Path Filter" : {
-              "displayName" : "Path Filter",
-              "identifiesControllerService" : false,
-              "name" : "Path Filter",
-              "sensitive" : false
-            }
-          },
-          "runDurationMillis" : 0,
-          "scheduledState" : "ENABLED",
-          "schedulingPeriod" : "1000 sec",
-          "schedulingStrategy" : "TIMER_DRIVEN",
-          "style" : { },
-          "type" : "org.apache.nifi.processors.standard.GetFile",
-          "yieldDuration" : "1 sec"
-        }, {
-          "autoTerminatedRelationships" : [ ],
-          "bulletinLevel" : "WARN",
-          "bundle" : {
-            "artifact" : "nifi-standard-nar",
-            "group" : "org.apache.nifi",
-            "version" : "1.14.0"
-          },
           "comments" : "Retrieves a listing of files from the staging area.\nFor each file that is listed, creates a FlowFile that represents the file so that it can be fetched in conjunction with FetchFile.",
           "componentType" : "PROCESSOR",
           "concurrentlySchedulableTaskCount" : 1,
@@ -6088,6 +7125,118 @@
             "background-color" : "#d1d8ff"
           },
           "type" : "org.apache.nifi.processors.standard.ListFile",
+          "yieldDuration" : "1 sec"
+        }, {
+          "autoTerminatedRelationships" : [ ],
+          "bulletinLevel" : "WARN",
+          "bundle" : {
+            "artifact" : "nifi-standard-nar",
+            "group" : "org.apache.nifi",
+            "version" : "1.14.0"
+          },
+          "comments" : "",
+          "componentType" : "PROCESSOR",
+          "concurrentlySchedulableTaskCount" : 1,
+          "executionNode" : "PRIMARY",
+          "groupIdentifier" : "860623e7-2365-3eb3-88c8-18fcc4a3b08e",
+          "identifier" : "fdba33be-9a15-31b5-8aa2-285f56601454",
+          "name" : "GetFile",
+          "penaltyDuration" : "30 sec",
+          "position" : {
+            "x" : 216.0,
+            "y" : 696.0
+          },
+          "properties" : {
+            "Keep Source File" : "true",
+            "Minimum File Age" : "0 sec",
+            "Polling Interval" : "0 sec",
+            "Input Directory" : "/home/hdoop/gsb",
+            "Batch Size" : "20",
+            "Minimum File Size" : "0 B",
+            "Ignore Hidden Files" : "true",
+            "Recurse Subdirectories" : "true",
+            "File Filter" : "[^\\.].*"
+          },
+          "propertyDescriptors" : {
+            "Keep Source File" : {
+              "displayName" : "Keep Source File",
+              "identifiesControllerService" : false,
+              "name" : "Keep Source File",
+              "sensitive" : false
+            },
+            "Minimum File Age" : {
+              "displayName" : "Minimum File Age",
+              "identifiesControllerService" : false,
+              "name" : "Minimum File Age",
+              "sensitive" : false
+            },
+            "Polling Interval" : {
+              "displayName" : "Polling Interval",
+              "identifiesControllerService" : false,
+              "name" : "Polling Interval",
+              "sensitive" : false
+            },
+            "Input Directory" : {
+              "displayName" : "Input Directory",
+              "identifiesControllerService" : false,
+              "name" : "Input Directory",
+              "sensitive" : false
+            },
+            "Maximum File Age" : {
+              "displayName" : "Maximum File Age",
+              "identifiesControllerService" : false,
+              "name" : "Maximum File Age",
+              "sensitive" : false
+            },
+            "Batch Size" : {
+              "displayName" : "Batch Size",
+              "identifiesControllerService" : false,
+              "name" : "Batch Size",
+              "sensitive" : false
+            },
+            "Maximum File Size" : {
+              "displayName" : "Maximum File Size",
+              "identifiesControllerService" : false,
+              "name" : "Maximum File Size",
+              "sensitive" : false
+            },
+            "Minimum File Size" : {
+              "displayName" : "Minimum File Size",
+              "identifiesControllerService" : false,
+              "name" : "Minimum File Size",
+              "sensitive" : false
+            },
+            "Ignore Hidden Files" : {
+              "displayName" : "Ignore Hidden Files",
+              "identifiesControllerService" : false,
+              "name" : "Ignore Hidden Files",
+              "sensitive" : false
+            },
+            "Recurse Subdirectories" : {
+              "displayName" : "Recurse Subdirectories",
+              "identifiesControllerService" : false,
+              "name" : "Recurse Subdirectories",
+              "sensitive" : false
+            },
+            "File Filter" : {
+              "displayName" : "File Filter",
+              "identifiesControllerService" : false,
+              "name" : "File Filter",
+              "sensitive" : false
+            },
+            "Path Filter" : {
+              "displayName" : "Path Filter",
+              "identifiesControllerService" : false,
+              "name" : "Path Filter",
+              "sensitive" : false
+            }
+          },
+          "runDurationMillis" : 0,
+          "scheduledState" : "ENABLED",
+          "schedulingPeriod" : "1000 sec",
+          "schedulingStrategy" : "TIMER_DRIVEN",
+          "style" : { },
+          "type" : "org.apache.nifi.processors.standard.GetFile",
           "yieldDuration" : "1 sec"
         } ],
         "remoteProcessGroups" : [ ],
