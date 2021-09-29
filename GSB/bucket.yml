@@ -1,6 +1,6 @@
 flows:
-  123b1912-5c1b-428c-9fbf-efbe1da4daaa: {ver: 3, file: NIFI_Orchestration_Flow_V2.snapshot,
-    comments: PM both zip and gz, author: anonymous, created: 1632860971792, flowName: NIFI
+  123b1912-5c1b-428c-9fbf-efbe1da4daaa: {ver: 4, file: NIFI_Orchestration_Flow_V2.snapshot,
+    comments: Changed Nokia, author: anonymous, created: 1632942495524, flowName: NIFI
       Orchestration Flow V2, flowDesc: ''}
 layoutVer: 1
 bucketId: feb8a097-1614-4f29-83d7-a47d5d93a4aa
